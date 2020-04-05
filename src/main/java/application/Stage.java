@@ -11,20 +11,56 @@ public class Stage {
     private int currentTrueAnswer;
     private boolean completed;
     private boolean isOpened;
+    private boolean firstTime = true;
 
-    void generateNewQuestion(){
+    public Stage(QuestionFactory questionFactory,int trueAnswerRequired){
+        this.questionFactory = questionFactory;
+        this.trueAnswerRequired = trueAnswerRequired;
+        currentQuestion = null;
+        this.currentTrueAnswer = 0;
 
     }
+
+    void generateNewQuestion(){
+        currentQuestion = questionFactory.createQuestion();
+        firstTime = true;
+    }
+
+    //khong biet dat ten ham nhung dai loai la:
+//     + Nếu currentQuestion == null thì tạo moi
+
 
     void open(){
         isOpened = true;
     }
 
     void reply(Answer ans){
+        if(firstTime){
+            if (ans == currentQuestion.getAnswer()) {
+                // tao hieu ung bay cai vien dan khi currentTrueAnswer > 0
+                currentTrueAnswer++;
+                complete();
+                generateNewQuestion();
 
+            } else{
+                firstTime = false;
+                //cho vien dan quay lai neu currentTrueAnser > 0
+                currentTrueAnswer--;
+            }
+        } else {
+            if(ans == currentQuestion.getAnswer()){
+                generateNewQuestion();
+            } else firstTime = false;
+        }
     }
 
     void complete(){
-
+        if (currentTrueAnswer == trueAnswerRequired)
+            completed = true;
     }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+    //vien dan bay khi currentTrueAnser > 0;
 }

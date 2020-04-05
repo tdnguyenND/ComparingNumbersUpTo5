@@ -1,10 +1,15 @@
 package questionFactory;
 
 import question.Question;
+import question.concreteQuestion.GiveTheSameNumberQuestion;
 
 public class GiveTheSameNumberFactory implements QuestionFactory {
+
+    GiveTheSameNumberQuestion question;
     @Override
     public Question createQuestion() {
-        return null;//change this line
+
+        question = new GiveTheSameNumberQuestion();
+        return question;
     }
 }

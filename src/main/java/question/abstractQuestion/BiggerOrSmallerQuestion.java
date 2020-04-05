@@ -5,10 +5,7 @@ import answer.BiggerOrSmallerAnswer;
 import question.Question;
 
 public abstract class BiggerOrSmallerQuestion implements Question {
-    private BiggerOrSmallerAnswer answer;
+    protected BiggerOrSmallerAnswer answer;
 
-    @Override
-    public Answer getAnswer() {
-        return answer;
-    }
+
 }

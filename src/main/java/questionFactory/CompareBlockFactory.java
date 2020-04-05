@@ -2,10 +2,13 @@ package questionFactory;
 
 
 import question.Question;
+import question.concreteQuestion.CompareBlockQuestion;
 
 public class CompareBlockFactory implements QuestionFactory {
+    private Question question;
     @Override
     public Question createQuestion() {
-        return null;//change this line
+        question = new CompareBlockQuestion();
+        return question;
     }
 }
