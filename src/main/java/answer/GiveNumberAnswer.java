@@ -5,12 +5,9 @@ public class GiveNumberAnswer implements Answer {
     public GiveNumberAnswer(int value){
         this.value = value;
     }
-    public  int getValue(){
-        return  this.value;
-    }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean compare(Object obj) {
         if (this == obj) return true;
         if (obj.getClass() != GiveNumberAnswer.class) return false;
         GiveNumberAnswer other = (GiveNumberAnswer) obj;
