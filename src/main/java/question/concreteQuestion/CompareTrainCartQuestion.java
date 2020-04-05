@@ -5,23 +5,31 @@ import answer.BiggerOrSmallerOrEqualAnswer;
 import entity.TrainCart;
 import question.abstractQuestion.BiggerOrSmallerOrEqualQuestion;
 
+import java.util.Random;
+
 public class CompareTrainCartQuestion extends BiggerOrSmallerOrEqualQuestion {
     private TrainCart[] fixedTrainCarts;
     private TrainCart[] unfixedTrainCarts;
-    private int fixNumber ;
-    private int unfixNumber;
+    private int fixedNumber ;
+    private int unfixedNumber;
     private final int rNumber = 6;
 
+
     public CompareTrainCartQuestion(){
-        fixNumber = (int) ( Math.random() % rNumber+ 1);
-        unfixNumber = (int) (Math.random() % rNumber + 1);
+        fixedNumber = (int)(Math.random() * rNumber);
+        unfixedNumber = (int)(Math.random() * rNumber);
     }
 
     @Override
     public Answer getAnswer() {
-        if(fixNumber == unfixNumber) answer = BiggerOrSmallerOrEqualAnswer.EQUAL;
-        else  if (fixNumber > unfixNumber) answer = BiggerOrSmallerOrEqualAnswer.BIGGER;
+        if(fixedNumber == unfixedNumber) answer = BiggerOrSmallerOrEqualAnswer.EQUAL;
+        else  if (fixedNumber > unfixedNumber) answer = BiggerOrSmallerOrEqualAnswer.BIGGER;
         else answer = BiggerOrSmallerOrEqualAnswer.SMALLER;
         return answer;
+    }
+
+    @Override
+    public String toString() {
+        return "fixedNumber: " + fixedNumber + " unfixedNumber: " + unfixedNumber;
     }
 }

@@ -5,12 +5,15 @@ import answer.GiveNumberAnswer;
 import entity.Block;
 import question.abstractQuestion.GiveNumberQuestion;
 
+import java.util.Random;
+
 public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     private Block[] fixedBlock;
     private final int rNumber = 5;
 
+
     public GiveTheSameNumberQuestion(){
-        answer = new GiveNumberAnswer((int)  Math.random()% rNumber + 1);
+        answer = new GiveNumberAnswer( (int) (Math.random() * rNumber));
     }
 
     @Override
@@ -18,5 +21,8 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
         return answer;
     }
 
-
+    @Override
+    public String toString() {
+        return "initNumber: " + answer.getValue();
+    }
 }
