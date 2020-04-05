@@ -83,7 +83,7 @@
                         <div class="lesson-card-item--status"></div>
                         <div class="lesson-card-item--preview"></div>
                         <div class="lesson-card-item--title">
-                            Ai có nhiều khối hơn?
+                            <a href="/lesson/1">Ai có nhiều khối hơn?</a>
                         </div>
                     </div>
                     <div class="lesson-card-item second">

@@ -12,9 +12,9 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
     private final int rNumber = 5;
 
     public CompareBlockQuestion(){
-        number1 = (int) ( Math.random() % rNumber +1);
+        number1 = (int) ( Math.random() * rNumber +1);
         do {
-            number2 = (int) (Math.random() % rNumber) + 1;
+            number2 = (int) (Math.random() * rNumber) + 1;
         } while (number2 == number1);
     }
 
@@ -23,5 +23,10 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
         if(number1 > number2) answer =  BiggerOrSmallerAnswer.BIGGER;
         else answer= BiggerOrSmallerAnswer.SMALLER;
         return answer;
+    }
+
+    @Override
+    public String toString() {
+        return "{first: " + number1 +", second: "+ number2 + "}";
     }
 }
