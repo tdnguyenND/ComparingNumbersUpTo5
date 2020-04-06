@@ -55,6 +55,10 @@ View = function(model){
 
     this.displayCurrentQuestion = function() {
         console.log("display question")
+        document.getElementById("arrows").innerHTML = ""
+        document.getElementById("list-block-one").innerHTML = ""
+        document.getElementById("list-block-two").innerHTML = ""
+
         let listBlockOne = document.getElementById("list-block-one")
         self.builtColumnOfBlock(listBlockOne, model.currentQuestion.first)
 
@@ -71,7 +75,6 @@ View = function(model){
     };
 
     this.handleResult = function(result) {
-        isFirstAnswer = true
         if(result){
             self.setBackground(chosenAnswerID, "rgb(106, 219, 72)")
             setTimeout(() => {
@@ -82,43 +85,62 @@ View = function(model){
                     window.location = "../completed"
                 }
             }, 1500);
-            let ml = 440 - 24 * self.model.numbersOfAnswerTrue
-            document.getElementById(`ball_${self.model.numbersOfAnswerTrue}`).style.left = ml.toString() + "px";
-            self.model.numbersOfAnswerTrue++;
+
+            if(isFirstAnswer){
+                let ml = 440 - 24 * self.model.numbersOfAnswerTrue
+                document.getElementById(`ball_${self.model.numbersOfAnswerTrue}`).style.left = ml.toString() + "px";
+                self.model.numbersOfAnswerTrue++;
+            }
+            isFirstAnswer = true;
         } else{
             self.setBackground(chosenAnswerID, "#FF5D6A")
             setTimeout(() => {
                 self.setBackground(chosenAnswerID, "#6ec3e2")
             }, 1500);
-            if (isFirstAnswer) {
-                isFirstAnswer = false
+
+            if(isFirstAnswer && model.numbersOfAnswerTrue > 0){
                 self.model.numbersOfAnswerTrue--;
                 let ml = 124 - 24 * self.model.numbersOfAnswerTrue
                 document.getElementById(`ball_${self.model.numbersOfAnswerTrue}`).style.left = ml.toString() + "px";
-
             }
-            self.displaySuggestion(2, 5)
+            isFirstAnswer = false
+            self.displaySuggestion(model.currentQuestion.first, model.currentQuestion.second)
         }
     };
 
     this.displaySuggestion = function(columnA, columnB){
-        //display arrow
-        let html = ""
-        let mediate = Math.abs(columnA - columnB)
-        for(let i = 0; i < mediate; i ++){
-            if(i < mediate){
-                html += `<img class="arrows_list--item__green arrows_item_${i}" src="../resources/main_page/images/31.png" alt=""></img>`
-            } else{
-                html += `<img class="arrows_list--item__red arrows_item_${i}" src="../resources/main_page/images/33.png" alt="">`
-            }
-        }
-        
+        let arrows = document.getElementById("arrows")
+        let max, min, col;
         if(columnA > columnB){
-            for(let i = mediate; i < columnA; i ++){
-                html+= `<img class="arrows_list--item__red arrows_item_${i}" src="../resources/main_page/images/33.png" alt="">`
-            }
+            max = columnA
+            min = columnB
+            col = document.getElementById("list-block-two")
+        } else{
+            max = columnB
+            min = columnA
+            col = document.getElementById("list-block-one")
         }
 
+        let i = 0
+        const intervalId = setInterval(() => {
+            if(i < min){
+                let htmlOfArrow = arrows.innerHTML
+                htmlOfArrow += `<img class="arrows_list--item__green arrows_item_${i}" src="../resources/main_page/images/31.png" alt="">`
+                arrows.innerHTML = htmlOfArrow
+            } else{
+                let htmlOfArrow = arrows.innerHTML
+                htmlOfArrow += `<img class="arrows_list--item__red arrows_item_${i}" src="../resources/main_page/images/33.png" alt="">`
+                arrows.innerHTML = htmlOfArrow
+
+                let htmlOfCol = col.innerHTML
+                htmlOfCol += `<img class="block block_${i}" src="../resources/main_page/images/71.png" alt="" style="width: 53px; height: 53px;">`
+                col.innerHTML = htmlOfCol
+            }
+            i++;
+            if(i >= max){
+                clearInterval(intervalId);
+            }
+        }, 1000)
     };
 
     this.setBackground = function(idElement, background){

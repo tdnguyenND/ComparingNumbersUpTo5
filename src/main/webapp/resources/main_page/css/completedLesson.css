@@ -23,3 +23,8 @@
     border-radius: 7px;
     margin: 0 auto;
 }
+.card_completed--button :hover{
+    cursor: pointer;
+    background: #5b9ee6;
+    text-decoration: none;
+}

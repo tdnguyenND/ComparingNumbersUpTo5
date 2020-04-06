@@ -197,6 +197,7 @@ img.uchiru_bg_color{
     font-size: 24px;
     color: white;
     cursor: pointer;
+    border: none;
 }
 /* .background_green {
     background-color: rgb(106, 219, 72);
@@ -232,5 +233,9 @@ img.uchiru_bg_color{
 .arrows_list .arrows_item_3{
     position: absolute;
     bottom: 151px;
+}
+.arrows_list .arrows_item_4{
+    position: absolute;
+    bottom: 197px;
 }
 

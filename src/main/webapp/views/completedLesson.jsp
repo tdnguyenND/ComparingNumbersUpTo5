@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="<c:url value = "/resources/main_page/css/main.css"/>" rel="stylesheet">
-    <link href="<c:url value = "/resources/main_page/css/main.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/main_page/css/completedLesson.css"/>" rel="stylesheet">
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -46,7 +47,9 @@
     <section class="card_completed">
         <div class="card_completed--title">Giỏi quá! Bạn đã hoàn thành bài học!</div>
         <div class="card_completed--congrats"></div>
-        <div class="card_completed--button">Tiếp tục</div>
+        <a href="completedLesson.jsp">
+            <div class="card_completed--button">Tiếp tục</div>
+        </a>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

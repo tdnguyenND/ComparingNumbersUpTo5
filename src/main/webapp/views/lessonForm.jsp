@@ -59,11 +59,11 @@
                             </div>
                             <div class="context--answer__floor"></div>
                             <div class="context--answer__name">Lan</div>
-                            <div id="answerA" class="context--answer__ok" disabled="true">Ok</div>
+                            <button id="answerA" class="context--answer__ok">Ok</button>
                         </div>
-                        <div class="arrows_list">
-                            <!-- <img class="arrows_list--item__green arrows_item_0" src="../resources/main_page/images/31.png" alt="">
-                            <img class="arrows_list--item__green arrows_item_1" src="../resources/main_page/images/31.png" alt="">
+                        <div id="arrows" class="arrows_list">
+
+                            <!-- <img class="arrows_list--item__green arrows_item_1" src="../resources/main_page/images/31.png" alt="">
                             <img class="arrows_list--item__green arrows_item_2" src="../resources/main_page/images/31.png" alt="">
                             <img class="arrows_list--item__red arrows_item_3" src="../resources/main_page/images/33.png" alt=""> -->
                         </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="context--answer__floor"></div>
                             <div class="context--answer__name">Long</div>
-                            <div id="answerB" class="context--answer__ok">Ok</div>
+                            <button id="answerB" class="context--answer__ok">Ok</button>
                         </div>
                     </div>
                 </div>
