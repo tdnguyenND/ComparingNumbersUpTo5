@@ -4,10 +4,6 @@ import answer.*;
 import question.Question;
 
 public abstract class BiggerOrSmallerOrEqualQuestion implements Question {
-    private BiggerOrSmallerOrEqualAnswer answer;
+    protected BiggerOrSmallerOrEqualAnswer answer;
 
-    @Override
-    public Answer getAnswer() {
-        return answer;
-    }
 }

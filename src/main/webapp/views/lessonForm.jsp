@@ -1,18 +1,13 @@
-<!-- <%--
-  Created by IntelliJ IDEA.
-  User: admin
-  Date: 3/30/2020
-  Time: 9:17 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../resources/main_page/css/lessonForm.css">
+    <link rel="stylesheet" href="<c:url value = "/resources/main_page/css/lessonForm.css"/>">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
@@ -26,10 +21,10 @@
         <div class="uchiru_bg_cell"></div>
         <div class="uchiru_bg_color"></div>
         <div class="uchiru_bg_stuff"></div>
-        <img src="../resources/main_page/images/background_0.jpg" alt="" class="uchiru_bg_color">
+        <img src="<c:url value = "/resources/main_page/images/background_0.jpg"/>" alt="" class="uchiru_bg_color">
         <div class="uchiru_box">
             <div class="uchiru_box--header d-flex justify-content-between">
-                <span>
+                <span id="back-btn">
                     <i class="fas fa-angle-left"></i>
                     Trở về
                 </span>
@@ -111,10 +106,15 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <script src="../resources/main_page/js/View.js"></script>
-    <script src="../resources/main_page/js/Component.js"></script>
-    <script src="../resources/main_page/js/Controller.js"></script>
-    <script src="../resources/main_page/js/Model.js"></script>
-    <script src="../resources/main_page/js/main.js"></script>
+    <script src="<c:url value = "/resources/main_page/js/View.js"/>"></script>
+    <script src="<c:url value = "/resources/main_page/js/component.js"/>"></script>
+    <script src="<c:url value = "/resources/main_page/js/Controller.js"/>"></script>
+    <script src="<c:url value = "/resources/main_page/js/Model.js"/>"></script>
+    <script type="text/javascript">
+        let model = new Model();
+        model.numberQuestionOfLesson = <%= request.getAttribute("trueAnswerRequired")%>
+        const view = new View(model);
+        view.openPage();
+    </script>
 </body>
 </html>

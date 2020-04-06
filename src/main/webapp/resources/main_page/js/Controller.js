@@ -1,14 +1,14 @@
 Controller = function(){
     this.getQuestion = function(){
         return axios({
-            url: "/question/stageID",
+            url: "../question/1",
             method: "get"
         });
     }
 
     this.submitAnswer = function(answer){
         return axios({
-            url: "answer/stageID",
+            url: "../answer/1",
             method: "post",
             params:{
                 answerContent: answer

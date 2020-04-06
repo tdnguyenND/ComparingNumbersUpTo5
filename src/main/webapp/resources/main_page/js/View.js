@@ -1,31 +1,48 @@
 View = function(model){
     this.model = model;
     this.controller = new Controller();
-    var self = this;
+    let isFirstAnswer = true;
+    let self = this;
+
+    let answer1ID = "answerA";
+    let answer2ID = "answerB";
+    let chosenAnswerID = null;
 
     this.openPage = function(){
         self.getNewQuestion();
-        
         let startBtn = document.getElementById("start-lesson");
         startBtn.onclick = () => self.startLesson();
+
+        let backBtn = document.getElementById("back-btn")
+        backBtn.onclick = () => {window.location = "../main"}
+    };
+
+    this.getNewQuestion = function() {
+        self.controller.getQuestion()
+            .then(response => {
+                model.saveCurrentQuestion(response.data);
+                self.displayCurrentQuestion();
+            })
     };
 
     this.startLesson = function() {
         console.log("ok")
         self.openQuestion();
-        let answerA = document.getElementById("answerA");
-        answerA.onclick = () => self.answerQuestion("answerA");
-        let answerB = document.getElementById("answerB");
-        answerB.onclick = () => self.answerQuestion("answerB");
-
-        if (model.numbersOfAnswerTrue == model.numberQuestionOfLesson) {
-            window.location = "./completedLesson.html"
-        }
+        let answerA = document.getElementById(answer1ID);
+        answerA.onclick = () => {
+            self.answerQuestion("BIGGER");
+            chosenAnswerID = answer1ID
+        };
+        let answerB = document.getElementById(answer2ID);
+        answerB.onclick = () => {
+            self.answerQuestion("SMALLER")
+            chosenAnswerID = answer2ID
+        };
     };
 
     this.answerQuestion = function(answer) {
         self.controller.submitAnswer(answer)
-            .then(response => handleResult(response.data == "true"));
+            .then(response => self.handleResult(response.data));
     };
 
     this.openQuestion = function() {
@@ -39,10 +56,10 @@ View = function(model){
     this.displayCurrentQuestion = function() {
         console.log("display question")
         let listBlockOne = document.getElementById("list-block-one")
-        builtColumnOfBlock(listBlockOne, model.currentQuestion.first)
+        self.builtColumnOfBlock(listBlockOne, model.currentQuestion.first)
 
         let listBlockTwo = document.getElementById("list-block-two")
-        builtColumnOfBlock(listBlockTwo, model.currentQuestion.second)
+        self.builtColumnOfBlock(listBlockTwo, model.currentQuestion.second)
     };
 
     this.builtColumnOfBlock = function(columnId, numberOfBlock) {
@@ -54,31 +71,33 @@ View = function(model){
     };
 
     this.handleResult = function(result) {
-        let isFirstAnswer = true
+        isFirstAnswer = true
         if(result){
-            setBackground(answer, "rgb(106, 219, 72)")
+            self.setBackground(chosenAnswerID, "rgb(106, 219, 72)")
             setTimeout(() => {
-                selft.setBackground(answer, "#6ec3e2")
-            }, 2000);
-            document.getElementById(`ball_${model.numbersOfAnswerTrue}`).setAttribute = ("class", "ball ml-auto")
+                self.setBackground(chosenAnswerID, "#6ec3e2")
+                self.getNewQuestion();
 
-            if(isFirstAnswer){
-                isFirstAnswer = false
-                model.numbersOfAnswerTrue++
-            }
-
-            getNewQuestion();
-
+                if (self.model.finish()) {
+                    window.location = "../completed"
+                }
+            }, 1500);
+            let ml = 440 - 24 * self.model.numbersOfAnswerTrue
+            document.getElementById(`ball_${self.model.numbersOfAnswerTrue}`).style.left = ml.toString() + "px";
+            self.model.numbersOfAnswerTrue++;
         } else{
-            setBackground(answer, "#FF5D6A")
+            self.setBackground(chosenAnswerID, "#FF5D6A")
             setTimeout(() => {
-                selft.setBackground(answer, "#6ec3e2")
-            }, 2000);
+                self.setBackground(chosenAnswerID, "#6ec3e2")
+            }, 1500);
+            if (isFirstAnswer) {
+                isFirstAnswer = false
+                self.model.numbersOfAnswerTrue--;
+                let ml = 124 - 24 * self.model.numbersOfAnswerTrue
+                document.getElementById(`ball_${self.model.numbersOfAnswerTrue}`).style.left = ml.toString() + "px";
 
-            //hiển thị gợi ý
-            displaySuggestion(2, 5)
-            
-            
+            }
+            self.displaySuggestion(2, 5)
         }
     };
 
@@ -105,13 +124,5 @@ View = function(model){
     this.setBackground = function(idElement, background){
         console.log(background)
         document.getElementById(idElement).style.background = background
-    };
-
-    this.getNewQuestion = function() {
-        self.controller.getQuestion()
-            .then(response => {
-                model.saveCurrentQuestion(response.data);
-                displayCurrentQuestion();;
-            })
     };
 };

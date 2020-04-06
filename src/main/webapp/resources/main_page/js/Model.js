@@ -12,4 +12,8 @@ Model = function() {
         this.currentResult = result
     }
 
+    this.finish = function () {
+        return this.numbersOfAnswerTrue === this.numberQuestionOfLesson;
+
+    }
 }
