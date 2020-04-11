@@ -13,7 +13,7 @@ Model = function() {
     }
 
     this.finish = function () {
-        return this.numbersOfAnswerTrue === this.numberQuestionOfLesson;
+        return this.numbersOfAnswerTrue === parseInt(this.numberQuestionOfLesson);
 
     }
 }

@@ -47,7 +47,7 @@
     <section class="card_completed">
         <div class="card_completed--title">Giỏi quá! Bạn đã hoàn thành bài học!</div>
         <div class="card_completed--congrats"></div>
-        <a href="completedLesson.jsp">
+        <a href="<c:url value="/"/>">
             <div class="card_completed--button">Tiếp tục</div>
         </a>
     </section>

@@ -1,14 +1,15 @@
 Controller = function(){
+    this.stageID = null
     this.getQuestion = function(){
         return axios({
-            url: "../question/1",
+            url: "../question/"+ this.stageID,
             method: "get"
         });
     }
 
     this.submitAnswer = function(answer){
         return axios({
-            url: "../answer/1",
+            url: "../answer/" + this.stageID,
             method: "post",
             params:{
                 answerContent: answer

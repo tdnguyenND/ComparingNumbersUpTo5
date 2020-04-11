@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+    <data id="trueAnswerRequired" value="<%= request.getAttribute("trueAnswerRequired")%>"/>
+    <data id="stageID" value="<%= request.getAttribute("stageID")%>"/>
     <div class="uchiru_container">
         <div class="uchiru_bg_cell"></div>
         <div class="uchiru_bg_color"></div>
@@ -59,7 +61,7 @@
                             </div>
                             <div class="context--answer__floor"></div>
                             <div class="context--answer__name">Lan</div>
-                            <button id="answerA" class="context--answer__ok">Ok</button>
+                            <button id="answerA" class="context--answer__ok" data-value="BIGGER">Ok</button>
                         </div>
                         <div id="arrows" class="arrows_list">
 
@@ -79,7 +81,7 @@
                             </div>
                             <div class="context--answer__floor"></div>
                             <div class="context--answer__name">Long</div>
-                            <button id="answerB" class="context--answer__ok">Ok</button>
+                            <button id="answerB" class="context--answer__ok" data-value = "SMALLER">Ok</button>
                         </div>
                     </div>
                 </div>
@@ -111,10 +113,8 @@
     <script src="<c:url value = "/resources/main_page/js/Controller.js"/>"></script>
     <script src="<c:url value = "/resources/main_page/js/Model.js"/>"></script>
     <script type="text/javascript">
-        let model = new Model();
-        model.numberQuestionOfLesson = <%= request.getAttribute("trueAnswerRequired")%>
-        const view = new View(model);
-        view.openPage();
+        const view = new View();
+        view.launch();
     </script>
 </body>
 </html>
