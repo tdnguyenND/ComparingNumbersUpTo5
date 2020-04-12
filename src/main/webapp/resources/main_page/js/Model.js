@@ -1,19 +1,13 @@
 Model = function() {
-    this.numberQuestionOfLesson = null;
-    this.currentQuestion = null; 
-    this.currentResult = null; 
-    this.numbersOfAnswerTrue = 0;
+    this.numberQuestionOfLesson = document.getElementById("trueAnswerRequired").value
+    this.currentQuestion = null
+    this.currentCorrectAnswer = 0
 
     this.saveCurrentQuestion = function(question){
         this.currentQuestion = question
     }
 
-    this.saveCurrentResult = function(result){
-        this.currentResult = result
-    }
-
-    this.finish = function () {
-        return this.numbersOfAnswerTrue === parseInt(this.numberQuestionOfLesson);
-
+    this.isFinish = function () {
+        return this.currentCorrectAnswer === parseInt(this.numberQuestionOfLesson);
     }
 }

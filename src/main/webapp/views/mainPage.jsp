@@ -9,11 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Learn</title>
     <link href="<c:url value = "/resources/main_page/css/main.css"/>" rel="stylesheet">
-    <script src="<c:url value = "/resources/main_page/js/View.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/Controller.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/component.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/Model.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/main.js"/>"></script>
 
     <link rel="shortcut icon" href="<c:url value = "/resources/main_page/images/dragon_favicon.png"/>" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"

@@ -53,29 +53,16 @@
                             <div class="row_1 d-flex justify-content-between">
                                 <div class="context--answer__kid"></div>
                                 <div id="list-block-one" class="context--answer__blocks">
-                                    <!-- <img class="block block_0" src="../resources/main_page/images/block.png" alt="">
-                                    <img class="block block_1" src="../resources/main_page/images/block.png" alt="">
-                                    <img class="block block_2" src="../resources/main_page/images/block.png" alt="">
-                                    <img class="block block_3" src="../resources/main_page/images/71.png" alt="" style="width: 53px; height: 53px;"> -->
                                 </div>
                             </div>
                             <div class="context--answer__floor"></div>
                             <div class="context--answer__name">Lan</div>
                             <button id="answerA" class="context--answer__ok" data-value="BIGGER">Ok</button>
                         </div>
-                        <div id="arrows" class="arrows_list">
-
-                            <!-- <img class="arrows_list--item__green arrows_item_1" src="../resources/main_page/images/31.png" alt="">
-                            <img class="arrows_list--item__green arrows_item_2" src="../resources/main_page/images/31.png" alt="">
-                            <img class="arrows_list--item__red arrows_item_3" src="../resources/main_page/images/33.png" alt=""> -->
-                        </div>
+                        <div id="arrows" class="arrows_list"></div>
                         <div class="context--answer answer_2">
                             <div class="row_1 d-flex justify-content-between">
                                 <div id="list-block-two" class="context--answer__blocks">
-                                    <!-- <img class="block block_0" src="../resources/main_page/images/block.png" alt="">
-                                    <img class="block block_1" src="../resources/main_page/images/block.png" alt="">
-                                    <img class="block block_2" src="../resources/main_page/images/block.png" alt="">
-                                    <img class="block block_3" src="../resources/main_page/images/block.png" alt=""> -->
                                 </div>
                                 <div class="context--answer__kid"></div>
                             </div>
@@ -112,9 +99,6 @@
     <script src="<c:url value = "/resources/main_page/js/component.js"/>"></script>
     <script src="<c:url value = "/resources/main_page/js/Controller.js"/>"></script>
     <script src="<c:url value = "/resources/main_page/js/Model.js"/>"></script>
-    <script type="text/javascript">
-        const view = new View();
-        view.launch();
-    </script>
+    <script src="<c:url value = "/resources/main_page/js/main.js"/>"></script>
 </body>
 </html>
