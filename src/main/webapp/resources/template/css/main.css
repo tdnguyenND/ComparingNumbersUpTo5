@@ -1,0 +1,129 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+.uchiru_container{
+    width: 100vw;
+    height: 100vh;
+}
+.uchiru_bg_cell{
+    background-image: url('../../images/background_4.png');
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.uchiru_bg_color{
+    background-image: url('../../images/background_1.png');
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.uchiru_bg_stuff{
+    background-image: url('../../images/background_3.png');
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+img.uchiru_bg_color{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+}
+.uchiru_box{
+    z-index: 0;
+    position: relative;
+    margin: 15px auto 20px;
+    width: 960px;
+    min-height: 600px;
+    border-radius: 15px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 19px 0px rgba(0,0,0,0.5), 0px 2px 4px 0px rgba(0,0,0,0.5);
+    padding-bottom: 20px;
+}
+.uchiru_box--header{
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(150,150,150,0.29);
+}
+.uchiru_box--header span{
+    color: #246EA1;
+    font-size: 18px;
+    cursor: pointer;
+}
+.uchiru_box--header span :hover{
+    color: #298ba1;
+}
+.uchiru_box--header .inner_process{
+    width: 465px;
+    height: 26px;
+    border-radius: 16px;
+    background: #EDEDED;
+    box-shadow: inset 0px 1px 2px 0px rgba(0,0,0, 0.4);
+    padding: 0 2.5px;
+    position: relative;
+}
+.uchiru_box--header .inner_process .ball{
+    display: block;
+    width: 21px;
+    height: 21px;
+    border-radius: 10px;
+    background-image: url('../../images/ball_green.png');
+    transition: 1s;
+    position: absolute;
+}
+#ball_5{
+    left: 4px;
+}
+#ball_4{
+    left: 28px;
+}
+#ball_3{
+    left: 52px;
+}
+#ball_2{
+    left: 76px;
+}
+#ball_1{
+    left: 100px;
+}
+#ball_0{
+    left: 124px;
+}
+.uchiru_box--body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+/* play screen */
+.scene_under_start{
+    position: relative;
+}
+.uchiru_box--body .btn_play_wall{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.btn_play--start{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 112px;
+    height: 113px;
+    background: url('../../images/play_btn.png') no-repeat;
+    margin: -57px 0 0 -35px;
+    padding: 40px 15px 15px 8px;
+    color: white;
+    cursor: pointer;
+}
+.blur_effect{
+    filter: blur(4px);
+}

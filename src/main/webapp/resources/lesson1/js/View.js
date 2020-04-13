@@ -1,11 +1,13 @@
 View = function(){
     let model = null;
     let controller = null;
+    let components = null;
     let isFirstAnswer = true;
     let listAnswer = null;
     let chosenAnswerID = null;
 
     let self = this;
+
 
     this.initializeVariable = function () {
         model = new Model();
@@ -19,7 +21,7 @@ View = function(){
         self.initializeVariable();
         self.newQuestion();
         document.getElementById("start-lesson").onclick = () => self.startLesson();
-        document.getElementById("back-btn").onclick = () => {window.location.href ="/"}//tu tu con cai link nuwax
+        document.getElementById("back-btn").onclick = () => {window.location.href ="../../.."}
     };
 
     this.newQuestion = function() {
@@ -41,7 +43,7 @@ View = function(){
     this.drawBlocks = function(drawElement, numberOfBlock) {
         let html = ""
         for (let i = 0; i < numberOfBlock; i++) {
-            html += `<img class="block block_${i}" src="../resources/main_page/images/block.png" alt="">`
+            html += `<img class="block block_${i}" src="../resources/images/block.png" alt="">`
         }
         drawElement.innerHTML = html
     };
@@ -49,7 +51,7 @@ View = function(){
     this.startLesson = function() {
         self.setUpAnswerScene();
         listAnswer.forEach(self.addOnclickEventForAnswer)
-    };
+    }
 
     this.setUpAnswerScene = function() {
         document.getElementById("start-wall").style.display = "none"
@@ -138,15 +140,15 @@ View = function(){
             let intervalId = setInterval(() => {
                 if(i < min){
                     let htmlOfArrow = arrows.innerHTML;
-                    htmlOfArrow += `<img class="arrows_list--item__green arrows_item_${i}" src="../resources/main_page/images/31.png" alt="">`
+                    htmlOfArrow += `<img class="arrows_list--item__green arrows_item_${i}" src="../resources/images/31.png" alt="">`
                     arrows.innerHTML = htmlOfArrow
                 } else{
                     let htmlOfArrow = arrows.innerHTML;
-                    htmlOfArrow += `<img class="arrows_list--item__red arrows_item_${i}" src="../resources/main_page/images/33.png" alt="">`
+                    htmlOfArrow += `<img class="arrows_list--item__red arrows_item_${i}" src="../resources/images/33.png" alt="">`
                     arrows.innerHTML = htmlOfArrow
 
                     let htmlOfCol = col.innerHTML
-                    htmlOfCol += `<img class="block block_${i}" src="../resources/main_page/images/71.png" alt="" style="width: 53px; height: 53px;">`
+                    htmlOfCol += `<img class="block block_${i}" src="../resources/images/71.png" alt="" style="width: 53px; height: 53px;">`
                     col.innerHTML = htmlOfCol
                 }
                 i++;

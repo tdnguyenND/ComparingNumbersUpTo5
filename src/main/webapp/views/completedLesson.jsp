@@ -9,7 +9,7 @@
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="<c:url value = "/resources/main_page/css/main.css"/>" rel="stylesheet">
-    <link href="<c:url value = "/resources/main_page/css/completedLesson.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/completedLesson/css/completedLesson.css"/>" rel="stylesheet">
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -62,10 +62,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    <script src="<c:url value = "/resources/main_page/js/View.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/component.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/Controller.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/Model.js"/>"></script>
 </body>
 
 </html>

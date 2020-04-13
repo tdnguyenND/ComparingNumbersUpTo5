@@ -9,13 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Learn</title>
     <link href="<c:url value = "/resources/main_page/css/main.css"/>" rel="stylesheet">
-    <script src="<c:url value = "/resources/main_page/js/View.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/Controller.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/component.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/Model.js"/>"></script>
-    <script src="<c:url value = "/resources/main_page/js/main.js"/>"></script>
-
-    <link rel="shortcut icon" href="<c:url value = "/resources/main_page/images/dragon_favicon.png"/>" type="image/x-icon">
+    <link rel="shortcut icon" href="<c:url value = "/resources/images/dragon_favicon.png"/>" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -71,7 +65,7 @@
                             Measurement
                         </div>
                         <div class="program-menu--item"
-                            style="background: url('<c:url value ="/resources/main_page/images/secret-lab-label.svg"/>') no-repeat right;">
+                            style="background: url('<c:url value ="/resources/images/secret-lab-label.svg"/>') no-repeat right;">
                             Secret Lab
                         </div>
                     </div>
@@ -87,7 +81,7 @@
                     <div class="lesson-title">So sánh các số nhỏ hơn 5</div>
                     <div class="lesson-card-row d-flex justify-content-between">
                         <div class="lesson-card-item first">
-                            <a href="/lesson/1">
+                            <a id="lesson1" href="/lesson/1">
                                 <div class="lesson-card-item--status"></div>
                                 <div class="lesson-card-item--preview"></div>
                                 <div class="lesson-card-item--title">
@@ -96,11 +90,13 @@
                             </a>
                         </div>
                         <div class="lesson-card-item second">
-                            <div class="lesson-card-item--status"></div>
-                            <div class="lesson-card-item--preview"></div>
-                            <div class="lesson-card-item--title">
-                                Giúp các bạn có số khối bằng nhau!
-                            </div>
+                            <a href="/lesson/2">
+                                <div class="lesson-card-item--status"></div>
+                                <div class="lesson-card-item--preview"></div>
+                                <div class="lesson-card-item--title">
+                                    Giúp các bạn có số khối bằng nhau!
+                                </div>
+                            </a>
                         </div>
                         <div class="lesson-card-item third">
                             <div class="lesson-card-item--status"></div>
@@ -133,6 +129,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="<c:url value = "/resources/main_page/js/main.js"/>"></script>
     
 </body>
 

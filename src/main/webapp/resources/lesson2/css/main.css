@@ -1,0 +1,164 @@
+.scene_under_start .caption{
+    padding-top: 15px;
+    margin-bottom: 60px;
+    font-size: 35px;
+    text-align: center;
+}
+.scene_under_start .context{
+    width: 560px;
+    margin: auto;
+}
+.context--answer{
+    width: 240px;
+    position: relative;
+}
+.context--answer .row_1{
+    height: 294px;
+    width: 240px;
+    padding: 0 13px;
+}
+.context--answer__kid{
+    height: 100%;
+    width: 138px;
+}
+.context--answer__floor{
+    width: 240px;
+    height: 60px;
+    background-image: url('../images/floor.png');
+    position: absolute;
+    top: 261px;
+    z-index: -1;
+}
+.context--answer__blocks{
+    /* width: 60px; */
+    width: 60px;
+    height: 100%;
+    position: relative;
+}
+.block{
+    background-image: url('../images/block.png');
+    background-size: cover;
+    width: 60px;
+    height: 53px;
+}
+.context--answer__blocks .block{
+    position: absolute;
+}
+.context--answer__blocks .block_0{
+    bottom: 0px;
+}
+.context--answer__blocks .block_1{
+    bottom: 46px;
+}
+.context--answer__blocks .block_2{
+    bottom: 92px;
+}
+.context--answer__blocks .block_3{
+    bottom: 138px;
+}
+.context--answer__blocks .block_4{
+    bottom: 184px;
+}
+.answer_1 .context--answer__kid{
+    background: url('../images/kid_1.svg') no-repeat;
+    background-position: bottom;
+}
+.answer_2 .context--answer__kid{
+    background: url('../images/kid_2.svg') no-repeat;
+    background-position: bottom;
+}
+.context .arrows_list{
+    width: 40px;
+    height: 295px;
+    position: relative;
+}
+.arrows_list .arrows_item_0{
+    position: absolute;
+    bottom: 13px;
+}
+.arrows_list .arrows_item_1{
+    position: absolute;
+    bottom: 59px;
+}
+.arrows_list .arrows_item_2{
+    position: absolute;
+    bottom: 105px;
+}
+.arrows_list .arrows_item_3{
+    position: absolute;
+    bottom: 151px;
+}
+.arrows_list .arrows_item_4{
+    position: absolute;
+    bottom: 197px;
+}
+.answer_2 .context--answer__blocks{
+    background-image: url('../images/28.png');
+    background-size: cover;
+    background-position: 0px 7px;
+}
+.context--drag{
+    margin-top: 40px;
+}
+.context--factory{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    display: inline-block;
+    left: 360px;
+    background: url('../images/30.png'), url('../images/32.png');
+    background-size: cover;
+}
+.context--factory .block{
+    position: absolute;
+    bottom: 11px;
+    left: 12px;
+}
+.context--trash{
+    width: 80px;
+    height: 80px;
+    background-image: url('../images/bin-1.png');
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+    left: 410px;
+}
+.context--trash__block{
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.context--trash__block .block{
+    position: absolute;
+    top: 8px;
+    left: 6px;
+}
+.context--trash--front{
+    width: 80px;
+    height: 80px;
+    background-image: url('../images/bin.png');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.drop-block{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.context--drag--done{
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #5BBBE4;
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    position: absolute;
+    bottom: 34px;
+    left: 620px;
+}
