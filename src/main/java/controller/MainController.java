@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
-    private final String[] lessonName = {"lessonForm", "lesson2", "lesson3", "lesson4"};
+    private final String[] lessonName = {"lessonOne", "lessonTwo", "lessonThree", "lessonFour"};
     private Application app = (Application) new ClassPathXmlApplicationContext("config/Beans.xml").getBean("app");
     @RequestMapping(value = "/")
     public String mainPage() {
