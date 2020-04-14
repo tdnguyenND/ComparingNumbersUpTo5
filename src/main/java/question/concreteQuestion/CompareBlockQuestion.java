@@ -30,7 +30,8 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
 
     @Override
     public String toString() {
-        return "number1: " + number1 + " number2: " + number2;
+
+        return "{\n\t\"first\": " + number1 + ",\n\t\"second\": " + number2 + "\n}";
     }
 
     @Override

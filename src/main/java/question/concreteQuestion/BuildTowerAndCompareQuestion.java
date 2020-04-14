@@ -26,7 +26,7 @@ public class BuildTowerAndCompareQuestion extends BiggerOrSmallerOrEqualQuestion
 
     @Override
     public String toString() {
-        return "fixedNumber: " + fixedNumber + " unfixedNumber: " + unfixedNumber;
+        return "{\n\t\"first\": " + fixedNumber + ",\n\t\"second\": " + unfixedNumber + "\n}";
     }
 
     @Override

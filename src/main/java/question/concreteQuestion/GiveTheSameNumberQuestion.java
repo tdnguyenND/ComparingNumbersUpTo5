@@ -5,7 +5,6 @@ import answer.GiveNumberAnswer;
 import entity.Block;
 import question.abstractQuestion.GiveNumberQuestion;
 
-import java.util.Random;
 
 public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     private Block[] fixedBlock;
@@ -23,7 +22,7 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
 
     @Override
     public String toString() {
-        return "initNumber: " + answer.getValue();
+        return "{\n\t\"initNumber\": " + answer.getValue() + "\n}";
     }
 
     @Override

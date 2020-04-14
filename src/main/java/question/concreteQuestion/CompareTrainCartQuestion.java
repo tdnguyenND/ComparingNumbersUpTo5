@@ -29,8 +29,9 @@ public class CompareTrainCartQuestion extends BiggerOrSmallerOrEqualQuestion {
     }
 
     @Override
-    public String toString() {
-        return "fixedNumber: " + fixedNumber + " unfixedNumber: " + unfixedNumber;
+    public String toString()
+    {
+        return "{\n\t\"first\": " + fixedNumber + ",\n\t\"second\": " + unfixedNumber + "\n}";
     }
 
     @Override
