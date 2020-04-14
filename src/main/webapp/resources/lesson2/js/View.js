@@ -5,6 +5,8 @@ View = function(){
             number: null
         }
     })
+    let fixedBlockInfo = allBlockInfo[0]
+    let unfixedBlockInfo = allBlockInfo[1]
 
     let blockSrc = "../resources/images/block.png"
 
@@ -15,14 +17,14 @@ View = function(){
     let arrows = document.getElementById("arrows");
     let smallerChainAddition = document.createElement('div')
 
+    this.oneMoreBlock = function(factory){
+        factory.innerHTML = `<div class="block" alt="" draggable="true"></div>`
+    }
+
     this.renderQuestion = function(question) {
         document.getElementById("arrows").innerHTML = ''
-        let i = 0
-        for (let key in question){
-            allBlockInfo[i].number = question[key]
-            i++
-        }
-        allBlockInfo.forEach(this.drawBlocks)
+        fixedBlockInfo.number = question['fixedNumber']
+        this.drawBlocks(fixedBlockInfo)
     }
 
     this.drawBlocks = function(blockInformation) {
@@ -40,6 +42,7 @@ View = function(){
 
     this.displaySuggestion = function(question){
         return new Promise(function (resolve, reject) {
+            unfixedBlockInfo.number = unfixedBlockInfo.location.getElementsByClassName('block').length
             //find the one that have bigger value of number
             let biggerNumberBlockInformation = allBlockInfo.reduce((prev, next)=>{
                 return (prev.number > next.number)? prev : next
@@ -62,7 +65,8 @@ View = function(){
                     // add red arrow
                     arrows.innerHTML += `<img class="arrows_list--item__red arrows_item_${i}" src=${redArrowSrc} alt="">`
                     // add x sign
-                    smallerChainAddition.innerHTML += `<img class="block block_${i}" src=${XSignSrc} alt="" style="width: 53px; height: 53px;">`
+                    let bot = (46 * i).toString()
+                    smallerChainAddition.innerHTML += `<img src=${XSignSrc} alt="" style="bottom: ${bot} px; position:absolute; width: 53px; height: 53px;">`
                 }
                 i++
                 if(i >= max){
@@ -90,5 +94,9 @@ View = function(){
     this.moveBallLeft = function(ballID){
         let ml = 124 - 24 * ballID
         document.getElementById(`ball_${ballID}`).style.left = ml.toString() + "px";
+    }
+
+    this.clearAnswer = function(){
+        allBlockInfo[1].location.innerHTML = ''
     }
 }

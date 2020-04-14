@@ -53,7 +53,6 @@ Components = function () {
         '    </div>\n' +
         '    <div class="context--drag">\n' +
         '        <div id="factory" class="context--factory">\n' +
-        '            <div id="abc" class="block" draggable="true"></div>\n' +
         '        </div>\n' +
         '        <div class="context--trash">\n' +
         '            <div class="context--trash__block"></div>\n' +
@@ -61,7 +60,7 @@ Components = function () {
         '            <div id="trash" class="drop-block">\n' +
         '            </div>\n' +
         '        </div>\n' +
-        '        <button class="context--drag--done">Hoàn thành</button>\n' +
+        '        <button id="submitAnswer" class="context--drag--done">Hoàn thành</button>\n' +
         '    </div>'
     this.lessonThree = ``
     this.lessonFour = ``

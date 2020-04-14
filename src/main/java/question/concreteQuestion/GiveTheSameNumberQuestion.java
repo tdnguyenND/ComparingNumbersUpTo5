@@ -10,7 +10,9 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     private final int rNumber = 5;
 
     public GiveTheSameNumberQuestion(){
-        answer = new GiveNumberAnswer((int)  Math.random()% rNumber + 1);
+        int value = (int)  (Math.random() * rNumber + 1);
+        answer = new GiveNumberAnswer(value);
+        fixedBlock = new Block[value];
     }
 
     @Override
@@ -18,5 +20,9 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
         return answer;
     }
 
+    @Override
+    public String toString() {
+        return "{\"fixedNumber\": \"" + fixedBlock.length + "\"}";
+    }
 
 }

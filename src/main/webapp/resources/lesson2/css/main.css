@@ -24,7 +24,7 @@
 .context--answer__floor{
     width: 240px;
     height: 60px;
-    background-image: url('../images/floor.png');
+    background-image: url('../../images/floor.png');
     position: absolute;
     top: 261px;
     z-index: -1;
@@ -36,7 +36,7 @@
     position: relative;
 }
 .block{
-    background-image: url('../images/block.png');
+    background-image: url('../../images/block.png');
     background-size: cover;
     width: 60px;
     height: 53px;
@@ -60,12 +60,10 @@
     bottom: 184px;
 }
 .answer_1 .context--answer__kid{
-    background: url('../images/kid_1.svg') no-repeat;
-    background-position: bottom;
+    background: url('../../images/kid_1.svg') no-repeat bottom;
 }
 .answer_2 .context--answer__kid{
-    background: url('../images/kid_2.svg') no-repeat;
-    background-position: bottom;
+    background: url('../../images/kid_2.svg') no-repeat bottom;
 }
 .context .arrows_list{
     width: 40px;
@@ -93,7 +91,7 @@
     bottom: 197px;
 }
 .answer_2 .context--answer__blocks{
-    background-image: url('../images/28.png');
+    background-image: url('../../images/28.png');
     background-size: cover;
     background-position: 0px 7px;
 }
@@ -106,7 +104,7 @@
     position: relative;
     display: inline-block;
     left: 360px;
-    background: url('../images/30.png'), url('../images/32.png');
+    background: url('../../images/30.png'), url('../../images/32.png');
     background-size: cover;
 }
 .context--factory .block{
@@ -117,7 +115,7 @@
 .context--trash{
     width: 80px;
     height: 80px;
-    background-image: url('../images/bin-1.png');
+    background-image: url('../../images/bin-1.png');
     background-size: cover;
     position: relative;
     display: inline-block;
@@ -138,7 +136,7 @@
 .context--trash--front{
     width: 80px;
     height: 80px;
-    background-image: url('../images/bin.png');
+    background-image: url('../../images/bin.png');
     background-size: cover;
     position: absolute;
     top: 0;
