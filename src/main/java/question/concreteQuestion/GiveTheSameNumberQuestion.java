@@ -9,11 +9,11 @@ import java.util.Random;
 
 public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     private Block[] fixedBlock;
-    private final int rNumber = 5;
+    private final int rNumber = 4;
 
 
     public GiveTheSameNumberQuestion(){
-        answer = new GiveNumberAnswer( (int) (Math.random() * rNumber));
+        answer = new GiveNumberAnswer( (int) (Math.random() * rNumber + 1));
     }
 
     @Override
@@ -24,5 +24,18 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     @Override
     public String toString() {
         return "initNumber: " + answer.getValue();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if( this == obj ) return true;
+        if (obj == null) return false;
+        if( obj instanceof GiveTheSameNumberQuestion){
+            GiveTheSameNumberQuestion other = (GiveTheSameNumberQuestion) obj;
+            if( this.answer.equals(other.answer))
+                return true;
+            return false;
+        }
+        return false;
     }
 }

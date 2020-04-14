@@ -1,5 +1,6 @@
 package answer;
 
+
 public class GiveNumberAnswer implements Answer {
     private int value;
     public GiveNumberAnswer(int value){
@@ -12,9 +13,13 @@ public class GiveNumberAnswer implements Answer {
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj.getClass() != GiveNumberAnswer.class) return false;
-        GiveNumberAnswer other = (GiveNumberAnswer) obj;
-        if (other.value == this.value) return true;
-        return  false;
+        if(obj == null) return false;
+        if(obj instanceof GiveNumberAnswer){
+            GiveNumberAnswer other = (GiveNumberAnswer) obj;
+            if( other.value == this.value)
+                return true;
+            return false;
+        }
+        return false;
     }
 }

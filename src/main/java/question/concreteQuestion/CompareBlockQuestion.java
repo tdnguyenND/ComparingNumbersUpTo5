@@ -11,13 +11,13 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
     private Block[][] fixedBlocks;
     private int number1;
     private int number2;
-    private final int rNumber = 5;
+    private final int rNumber = 4;
 
 
     public CompareBlockQuestion(){
-        number1 = (int) (Math.random() * rNumber);
+        number1 = (int) (Math.random() * rNumber + 1);
         do {
-            number2 =  (int) (Math.random() * rNumber);
+            number2 =  (int) (Math.random() * rNumber + 1);
         } while (number2 == number1);
     }
 
@@ -31,5 +31,18 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
     @Override
     public String toString() {
         return "number1: " + number1 + " number2: " + number2;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ( this == obj ) return true;
+        if( obj == null ) return false;
+        if ( obj instanceof CompareBlockQuestion ){
+            CompareBlockQuestion other = (CompareBlockQuestion) obj;
+            if( other.number1 == this.number1 && other.number2 == this.number2 )
+                return true;
+            return false;
+        }
+        return false;
     }
 }

@@ -12,12 +12,12 @@ public class CompareTrainCartQuestion extends BiggerOrSmallerOrEqualQuestion {
     private TrainCart[] unfixedTrainCarts;
     private int fixedNumber ;
     private int unfixedNumber;
-    private final int rNumber = 6;
+    private final int rNumber = 4;
 
 
     public CompareTrainCartQuestion(){
-        fixedNumber = (int)(Math.random() * rNumber);
-        unfixedNumber = (int)(Math.random() * rNumber);
+        fixedNumber = (int)(Math.random() * rNumber + 1);
+        unfixedNumber = (int)(Math.random() * rNumber  + 1);
     }
 
     @Override
@@ -31,5 +31,18 @@ public class CompareTrainCartQuestion extends BiggerOrSmallerOrEqualQuestion {
     @Override
     public String toString() {
         return "fixedNumber: " + fixedNumber + " unfixedNumber: " + unfixedNumber;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if( this == obj) return true;
+        if( obj == null ) return false;
+        if( obj instanceof CompareTrainCartQuestion ){
+            CompareTrainCartQuestion other = (CompareTrainCartQuestion) obj;
+            if( other.fixedNumber == this.fixedNumber && other.unfixedNumber == this.unfixedNumber)
+                return true;
+            return false;
+        }
+        return false;
     }
 }

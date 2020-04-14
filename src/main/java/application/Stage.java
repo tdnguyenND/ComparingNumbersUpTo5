@@ -22,7 +22,17 @@ public class Stage {
     }
 
     void generateNewQuestion(){
-        currentQuestion = questionFactory.createQuestion();
+        if (currentQuestion == null){
+            currentQuestion = questionFactory.createQuestion();
+        } else {
+            Question temp;
+            do {
+                temp = questionFactory.createQuestion();
+            } while ( temp.equals(currentQuestion));
+
+            currentQuestion = temp;
+        }
+
         firstTime = true;
     }
 
@@ -62,5 +72,4 @@ public class Stage {
     public boolean isCompleted() {
         return completed;
     }
-    //vien dan bay khi currentTrueAnser > 0;
 }
