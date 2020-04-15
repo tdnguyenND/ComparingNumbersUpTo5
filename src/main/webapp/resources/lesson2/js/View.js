@@ -1,75 +1,74 @@
 View = function(){
+    let self = this;
     let allBlockInfo = ['list-block-one', 'list-block-two'].map(id => {
         return {
             location: document.getElementById(id),
             number: null
         }
     })
-    let fixedBlockInfo = allBlockInfo[0]
-    let unfixedBlockInfo = allBlockInfo[1]
-
-    let blockSrc = "../resources/images/block.png"
-
-    let greenArrowSrc = "../resources/images/31.png"
-    let redArrowSrc = "../resources/images/33.png"
-    let XSignSrc = "../resources/images/XSign.png"
-
     let arrows = document.getElementById("arrows");
-    let smallerChainAddition = document.createElement('div')
+    let xSignChain = document.createElement('div')
 
-    this.oneMoreBlock = function(factory){
-        factory.innerHTML = `<div class="block" alt="" draggable="true"></div>`
-    }
-
-    this.renderQuestion = function(question) {
-        document.getElementById("arrows").innerHTML = ''
-        fixedBlockInfo.number = question['fixedNumber']
-        this.drawBlocks(fixedBlockInfo)
-    }
-
-    this.drawBlocks = function(blockInformation) {
-        let html = ""
-        for (let i = 0; i < blockInformation.number; i++) {
-            html += `<img name="block" class="block block_${i}" src="${blockSrc}" alt="">`
+    function createElement(classNameOptions){
+        let res = document.createElement('div')
+        for (c of classNameOptions){
+            res.classList.add(c)
         }
-        blockInformation.location.innerHTML = html
+        return res
     }
+
+    let block = createElement(['item', 'block'])
+    let greenArrow = createElement(['item', 'arrow', 'green-arrow'])
+    let redArrow = createElement(['item', 'arrow', 'red-arrow'])
+    let xSign = createElement(['item', 'x-sign'])
+
+    let standardDistance = 46
 
     this.setUpAnswerScene = function() {
         document.getElementById("start-wall").style.display = "none"
         document.getElementById("under-start-wall").setAttribute("class", "scene_under_start")
     }
 
-    this.displaySuggestion = function(question){
-        return new Promise(function (resolve, reject) {
-            unfixedBlockInfo.number = unfixedBlockInfo.location.getElementsByClassName('block').length
-            //find the one that have bigger value of number
-            let biggerNumberBlockInformation = allBlockInfo.reduce((prev, next)=>{
-                return (prev.number > next.number)? prev : next
-            })
-            // and find smaller one
-            let smallerNumberBlockInformation = allBlockInfo.reduce((prev, next)=>{
-                return (prev.number < next.number)? prev : next
-            })
+    function updateBlocksNumber() {
+        allBlockInfo.forEach(info => {
+            info.number = info.location.getElementsByClassName('block').length
+        })
+    }
 
-            let max = biggerNumberBlockInformation.number
-            let min = smallerNumberBlockInformation.number
-            smallerNumberBlockInformation.location.appendChild(smallerChainAddition)
+    function getBigger() {
+        return allBlockInfo.reduce((prev, next) => {
+            return (prev.number > next.number) ? prev : next
+        });
+    }
+
+    function getSmaller() {
+        return allBlockInfo.reduce((prev, next) => {
+            return (prev.number < next.number) ? prev : next
+        });
+    }
+
+    this.displaySuggestion = function(){
+        return new Promise(function (resolve, reject) {
+            updateBlocksNumber();
+            let bigger = getBigger()
+            let smaller = getSmaller()
+
+            xSignChain.style.height = (smaller.location.getBoundingClientRect().height - smaller.number * standardDistance) + 'px'
+            smaller.location.insertBefore(xSignChain, smaller.location.firstChild)
 
             let i = 0
             let intervalId = setInterval(() => {
-                if(i < min){
-                    // add green arrow
-                    arrows.innerHTML += `<img class="arrows_list--item__green arrows_item_${i}" src=${greenArrowSrc} alt="">`
+                if(i < smaller.number){
+                    arrows.appendChild(greenArrow.cloneNode(true))
+                    self.reArrangeItems(arrows, 'arrow')
                 } else{
-                    // add red arrow
-                    arrows.innerHTML += `<img class="arrows_list--item__red arrows_item_${i}" src=${redArrowSrc} alt="">`
-                    // add x sign
-                    let bot = (46 * i).toString()
-                    smallerChainAddition.innerHTML += `<img src=${XSignSrc} alt="" style="bottom: ${bot} px; position:absolute; width: 53px; height: 53px;">`
+                    arrows.appendChild(redArrow.cloneNode(true))
+                    xSignChain.appendChild(xSign.cloneNode(true))
+                    self.reArrangeItems(arrows, 'arrow')
+                    self.reArrangeItems(xSignChain, 'x-sign')
                 }
                 i++
-                if(i >= max){
+                if(i >= bigger.number){
                     clearInterval(intervalId)
                     resolve()
                 }
@@ -79,7 +78,8 @@ View = function(){
 
     this.clearSuggestion = function(){
         arrows.innerHTML = ''
-        smallerChainAddition.innerHTML = ''
+        xSignChain.innerHTML = ''
+        xSignChain.removeAttribute('style')
     }
 
     this.setBackground = function(element, background){
@@ -96,7 +96,17 @@ View = function(){
         document.getElementById(`ball_${ballID}`).style.left = ml.toString() + "px";
     }
 
-    this.clearAnswer = function(){
-        allBlockInfo[1].location.innerHTML = ''
+    this.addBlockInto = function(element, option = null){
+        let newBlock = block.cloneNode(true)
+        newBlock.classList.add(option)
+        element.appendChild(newBlock)
+    }
+
+    this.reArrangeItems = function(element, itemClassName){
+        let allElements = element.getElementsByClassName(itemClassName)
+        let startHeight = element.offsetTop + element.offsetHeight - standardDistance
+        for (let i = 0; i < allElements.length; i++){
+            allElements[i].style.top = (startHeight - standardDistance * i)  + 'px'
+        }
     }
 }

@@ -8,85 +8,111 @@ let submitAnswerButton = document.getElementById('submitAnswer')
 
 const fixedChain = document.getElementById("list-block-one")
 const unfixedChain = document.getElementById('list-block-two')
+
 const factory = document.getElementById("factory")
 const trash = document.getElementById("trash")
 
 const submitAnswerDelay = 1500
 let isFirstAnswer = true
 
-let draggedItem = null
+let container = document.getElementById('under-start-wall')
+let containerSize = container.getBoundingClientRect()
 
 launch = function(){
-    view.oneMoreBlock(factory)
-    listenEvent()
     newQuestion()
+    listenEvent()
+    newBlock()
 }
-
+newBlock = function(){
+    view.addBlockInto(factory, 'draggable')
+    Array.from(factory.getElementsByClassName('draggable'))
+        .forEach(element=>{
+            element.addEventListener('mousedown', startMoving)
+            element.addEventListener('dragstart', () => false)
+        })
+}
 newQuestion = function(){
     controller.getQuestion()
         .then(response => {
-            model.saveCurrentQuestion(response.data)
-            view.renderQuestion(model.currentQuestion)
+            renderQuestion(response.data)
         })
+}
+
+renderQuestion = function(question){
+    let numberOfUnfixedBlock = question['fixedNumber']
+    for (let i = 0; i < numberOfUnfixedBlock; i++)
+        view.addBlockInto(fixedChain)
+    view.reArrangeItems(fixedChain, 'block')
 }
 
 listenEvent = function(){
     backButton.addEventListener('click', back)
     startButton.addEventListener('click', start)
     submitAnswerButton.addEventListener('click', submitAnswer)
-    addEventForDragPlace()
-    addEventForDropPlaces()
 }
 
-addEventForDragPlace = function(){
-    let blockInFactory = document.querySelector('.context--factory > .block');
-    blockInFactory.addEventListener('dragstart', function (ev) {
-        draggedItem = blockInFactory;
-        ev.dataTransfer.setData("text/plain", this.parentNode.id);
-        setTimeout(function () {
-            blockInFactory.style.display = 'none';
-        }, 0)
-    });
-    blockInFactory.addEventListener('dragend', function () {
-        setTimeout(function () {
-            draggedItem.style.display = 'block';
-            draggedItem = null;
-        }, 0);
-    })
-}
+startMoving = function(){
+    view.clearSuggestion()
+    let self = this
+    firstSetUp();
+    let previousPosition = savePosition()
+    document.addEventListener('mousemove', moveBlock)
+    document.addEventListener('mouseup', dropBlock)
 
-addEventForDropPlaces = function(){
-    unfixedChain.addEventListener('dragover', function (e) {
-        e.preventDefault();
-    });
+    function firstSetUp(){
+        self.style.zIndex = '1000'
+    }
 
-    unfixedChain.addEventListener('drop', function (e) {
-        this.append(draggedItem);
-        setLocationOfBlock();
-        view.oneMoreBlock(factory);
-        addEventForDragPlace()
-    });
-
-    trash.addEventListener('dragover', function (e) {
-        e.preventDefault();
-    });
-
-    trash.addEventListener('drop', function (ev) {
-        let data = ev.dataTransfer.getData("text");
-        if(data !== "factory"){
-            this.append(draggedItem);
-            trash.innerHTML = "";
-            document.querySelector('.context--trash__block').innerHTML = `<div class="block"></div>`
-            setLocationOfBlock()
+    function savePosition(){
+        return {
+            x: self.style.left,
+            y: self.style.top,
         }
-    });
-}
+    }
 
-setLocationOfBlock = function(){
-    let child = unfixedChain.querySelectorAll('.block');
-    for(let i = 0; i < child.length; i ++){
-        const item = child[i];
-        item.setAttribute("class", `block block_${i}`);
+    function moveBlock(e){
+        moveTo(e.pageX, e.pageY)
+    }
+
+    function moveTo(x, y){
+        let newX = Math.min(Math.max(x - containerSize.left - self.offsetWidth/2, 0), containerSize.width - self.offsetWidth)
+        let newY = Math.min(Math.max(y - containerSize.top - self.offsetHeight/2, 0), containerSize.height - self.offsetHeight)
+        setLocation(newX, newY)
+    }
+
+    function setLocation(newX, newY){
+        self.style.left = newX
+        self.style.top = newY
+    }
+
+    function dropBlock(){
+        let currentLocation = self.getBoundingClientRect()
+        if (isInside(currentLocation, unfixedChain) && self.parentNode !== unfixedChain ){
+            self.parentNode.removeChild(self)
+            self.removeAttribute('style')
+            unfixedChain.appendChild(self)
+            view.reArrangeItems(unfixedChain, 'block')
+            newBlock()
+        }else if (isInside(currentLocation, trash) && self.parentNode === unfixedChain){
+            unfixedChain.removeChild(self)
+            view.reArrangeItems(unfixedChain, 'block')
+            self.removeEventListener('mousedown', startMoving)
+        } else{
+            backToLastLocation()
+        }
+        document.removeEventListener('mousemove', moveBlock);
+        document.removeEventListener('mouseup', dropBlock)
+    }
+
+    function backToLastLocation(){
+        setLocation(previousPosition.x, previousPosition.y)
+    }
+
+    function isInside(position, element){
+        let x = position.x
+        let y = position.y
+        let elementLocation = element.getBoundingClientRect()
+        return (x > elementLocation.left && x < elementLocation.right && y > elementLocation.top && y < elementLocation.bottom)
     }
 }
 
@@ -119,9 +145,9 @@ handleResult = function(chosenAnswer, result){
     return new Promise((resolve, reject) => {
         if (result){
             correctAnswerHandle()
+                .then(clear)
                 .then(checkFinishStage)
                 .then(newQuestion)
-                .then(clearAnswer)
                 .then(() => isFirstAnswer = true)
                 .then(resolve)
         }else{
@@ -132,9 +158,9 @@ handleResult = function(chosenAnswer, result){
     })
 }
 
-clearAnswer = function(){
-    view.clearAnswer()
-    submitAnswerButton.dataset.value = '0'
+clear = function(){
+    unfixedChain.innerHTML = ''
+    fixedChain.innerHTML = ''
 }
 
 correctAnswerHandle = function () {
@@ -153,7 +179,7 @@ incorrectAnswerHandle = function() {
             model.currentCorrectAnswer--
             view.moveBallLeft(model.currentCorrectAnswer)
         }
-        view.displaySuggestion(model.currentQuestion)
+        view.displaySuggestion()
             .then(resolve)
     })
 }

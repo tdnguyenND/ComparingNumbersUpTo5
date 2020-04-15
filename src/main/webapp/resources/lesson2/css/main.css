@@ -10,7 +10,6 @@
 }
 .context--answer{
     width: 240px;
-    position: relative;
 }
 .context--answer .row_1{
     height: 294px;
@@ -26,38 +25,43 @@
     height: 60px;
     background-image: url('../../images/floor.png');
     position: absolute;
-    top: 261px;
+    top: 387px;
     z-index: -1;
 }
 .context--answer__blocks{
     /* width: 60px; */
     width: 60px;
     height: 100%;
-    position: relative;
+}
+.item{
+    height: 53px;
+    border: 0;
+    position: absolute;
+    background-size: cover;
+    background: no-repeat center;
 }
 .block{
     background-image: url('../../images/block.png');
-    background-size: cover;
     width: 60px;
-    height: 53px;
+}
+.arrow{
+    width: 40px;
+}
+.green-arrow{
+    background-image: url('../../images/31.png');
+}
+.red-arrow{
+    background-image: url("../../images/33.png");
+}
+.x-sign{
+    background-image: url("../../images/XSign.png");
+    width: 40px;
 }
 .context--answer__blocks .block{
     position: absolute;
 }
-.context--answer__blocks .block_0{
-    bottom: 0px;
-}
-.context--answer__blocks .block_1{
-    bottom: 46px;
-}
-.context--answer__blocks .block_2{
-    bottom: 92px;
-}
-.context--answer__blocks .block_3{
-    bottom: 138px;
-}
-.context--answer__blocks .block_4{
-    bottom: 184px;
+.context--answer__blocks .red-sign {
+    position: absolute;
 }
 .answer_1 .context--answer__kid{
     background: url('../../images/kid_1.svg') no-repeat bottom;
@@ -68,27 +72,6 @@
 .context .arrows_list{
     width: 40px;
     height: 295px;
-    position: relative;
-}
-.arrows_list .arrows_item_0{
-    position: absolute;
-    bottom: 13px;
-}
-.arrows_list .arrows_item_1{
-    position: absolute;
-    bottom: 59px;
-}
-.arrows_list .arrows_item_2{
-    position: absolute;
-    bottom: 105px;
-}
-.arrows_list .arrows_item_3{
-    position: absolute;
-    bottom: 151px;
-}
-.arrows_list .arrows_item_4{
-    position: absolute;
-    bottom: 197px;
 }
 .answer_2 .context--answer__blocks{
     background-image: url('../../images/28.png');
@@ -101,16 +84,15 @@
 .context--factory{
     width: 80px;
     height: 80px;
-    position: relative;
     display: inline-block;
-    left: 360px;
+    margin-left: 350px;
     background: url('../../images/30.png'), url('../../images/32.png');
     background-size: cover;
 }
 .context--factory .block{
     position: absolute;
-    bottom: 11px;
-    left: 12px;
+    top: 480px;
+    left: 360px;
 }
 .context--trash{
     width: 80px;
@@ -119,7 +101,7 @@
     background-size: cover;
     position: relative;
     display: inline-block;
-    left: 410px;
+    margin-left: 60px;
 }
 .context--trash__block{
     width: inherit;
@@ -138,9 +120,6 @@
     height: 80px;
     background-image: url('../../images/bin.png');
     background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 .drop-block{
     width: 80px;
@@ -159,4 +138,21 @@
     position: absolute;
     bottom: 34px;
     left: 620px;
+}
+#factory{
+
+}
+#factory .block{
+    animation-duration: 1s;
+    animation-name: scale-up-ver-bottom;
+}
+@keyframes scale-up-ver-bottom {
+    0% {
+        transform: scaleY(0);
+        transform-origin: 0 100%
+    }
+    100% {
+        transform: scaleY(1);
+        transform-origin: 0 100%
+    }
 }
