@@ -3,7 +3,7 @@ View = function(){
     let allBlockInfo = ['list-block-one', 'list-block-two'].map(id => {
         return {
             location: document.getElementById(id),
-            number: null
+            number: 0
         }
     })
     let arrows = document.getElementById("arrows");
@@ -49,6 +49,7 @@ View = function(){
 
     this.displaySuggestion = function(){
         return new Promise(function (resolve, reject) {
+            self.setBackground(unfixedChain, 'none')
             updateBlocksNumber();
             let bigger = getBigger()
             let smaller = getSmaller()
@@ -83,7 +84,7 @@ View = function(){
     }
 
     this.setBackground = function(element, background){
-        element.style.background = background
+        element.style.backgroundImage = background
     }
 
     this.moveBallRight = function(ballID){
@@ -103,11 +104,45 @@ View = function(){
     }
 
     this.reArrangeItems = function(element, itemClassName){
+        updateBlocksNumber()
         let allElements = element.getElementsByClassName(itemClassName)
         let startHeight = element.offsetTop + element.offsetHeight - standardDistance
         for (let i = 0; i < allElements.length; i++){
             allElements[i].style.zIndex = (i + 1) + ''
             allElements[i].style.top = (startHeight - standardDistance * i)  + 'px'
         }
+        checkStatusOfUnfixedChain()
+    }
+
+    this.beforeBuildColumn = function () {
+        if(unfixedChain.style.backgroundImage == 'none'){
+            self.setBackground(unfixedChain, `url('../resources/images/28.png')`)
+            //unfixedChain.style.backgroundImage = `url('../resources/images/28.png')`;
+        }
+        submitAnswerButton.setAttribute('disabled', true)
+    }
+    function checkStatusOfUnfixedChain() {
+        if(allBlockInfo[1].number != 0){
+            submitAnswerButton.removeAttribute('disabled')
+        } else{
+            submitAnswerButton.setAttribute('disabled', true)
+        }
+    }
+    this.reworkBtnAppear= function(){
+        submitAnswerButton.style.display = 'none'
+        reworkButton.style.display = 'inline-block'
+        reworkButton.addEventListener('click', rework)
+    }
+    function rework(){
+        submitAnswerButton.style.display = 'inline-block'
+        reworkButton.style.display = 'none'
+        self.clearSuggestion()
+        clear()
+        newQuestion()
+        enableSubmitAnswerButton()
+        self.setBackground(unfixedChain, `url('../resources/images/28.png')`)
+    }
+    this.blockInsideTrash = function () {
+        document.querySelector('.context--trash__block > .block').style.visibility = 'visible'
     }
 }
