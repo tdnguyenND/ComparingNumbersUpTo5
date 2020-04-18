@@ -1,3 +1,6 @@
+*{
+    user-select: none;
+}
 .scene_under_start .caption{
     padding-top: 15px;
     margin-bottom: 60px;

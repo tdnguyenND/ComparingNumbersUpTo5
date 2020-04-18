@@ -145,4 +145,7 @@ View = function(){
     this.blockInsideTrash = function () {
         document.querySelector('.context--trash__block > .block').style.visibility = 'visible'
     }
+    this.getNumberBlockOfUnfixedBlockChain = function(){
+        return allBlockInfo[1].number
+    }
 }

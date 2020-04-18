@@ -93,7 +93,7 @@ startMoving = function(){
 
     function dropBlock(){
         let currentLocation = self.getBoundingClientRect()
-        if (isInside(currentLocation, unfixedChain) && self.parentNode !== unfixedChain ){
+        if (isInside(currentLocation, unfixedChain) && self.parentNode !== unfixedChain && view.getNumberBlockOfUnfixedBlockChain() < 6){
             self.parentNode.removeChild(self)
             self.removeAttribute('style')
             unfixedChain.appendChild(self)
