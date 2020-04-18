@@ -106,6 +106,7 @@ View = function(){
         let allElements = element.getElementsByClassName(itemClassName)
         let startHeight = element.offsetTop + element.offsetHeight - standardDistance
         for (let i = 0; i < allElements.length; i++){
+            allElements[i].style.zIndex = (i + 1) + ''
             allElements[i].style.top = (startHeight - standardDistance * i)  + 'px'
         }
     }

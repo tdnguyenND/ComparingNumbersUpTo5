@@ -46,6 +46,10 @@ renderQuestion = function(question){
 }
 
 listenEvent = function(){
+    window.onresize = () => {
+        containerSize = container.getBoundingClientRect()
+    }
+
     backButton.addEventListener('click', back)
     startButton.addEventListener('click', start)
     submitAnswerButton.addEventListener('click', submitAnswer)
@@ -102,6 +106,7 @@ startMoving = function(){
         }
         document.removeEventListener('mousemove', moveBlock);
         document.removeEventListener('mouseup', dropBlock)
+        if(self.parentNode !== factory) view.reArrangeItems(self.parentNode, 'block')
     }
 
     function backToLastLocation(){
@@ -112,7 +117,8 @@ startMoving = function(){
         let x = position.x
         let y = position.y
         let elementLocation = element.getBoundingClientRect()
-        return (x > elementLocation.left && x < elementLocation.right && y > elementLocation.top && y < elementLocation.bottom)
+        return (x > elementLocation.left && x < elementLocation.right &&
+            y > elementLocation.top && y < elementLocation.bottom)
     }
 }
 
@@ -125,20 +131,19 @@ start = function(){
 }
 
 submitAnswer = function(){
-    disableSubmitAnswerButton()
+    disableBehavior()
     if (!isFirstAnswer) view.clearSuggestion()
     controller.submitAnswer(unfixedChain.getElementsByClassName('block').length)
         .then(response => handleResult(this, response.data))
-        .then(enableSubmitAnswerButton)
-
+        .then(enableBehavior)
 }
 
-disableSubmitAnswerButton = function(){
-    submitAnswerButton.disabled = true
+disableBehavior = function(){
+    document.getElementById('under-start-wall').style.pointerEvents = 'none'
 }
 
-enableSubmitAnswerButton = function(){
-    submitAnswerButton.disabled = false
+enableBehavior = function(){
+    document.getElementById('under-start-wall').style.pointerEvents = ''
 }
 
 handleResult = function(chosenAnswer, result){
