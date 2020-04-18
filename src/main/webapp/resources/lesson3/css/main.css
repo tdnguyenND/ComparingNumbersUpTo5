@@ -1,99 +1,94 @@
-.scene_under_start .caption{
-    padding-top: 5px;
-    margin-bottom: 60px;
-    font-size: 30px;
-    text-align: center;
+/* caption */
+.caption{
+    margin-top: 15px;
 }
+.caption_one{
+    text-align: center;
+    font-size: 35px;
+    color: rgba(0,0,0,.3);
+}
+.caption_two{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+}
+
+/* context */
 .scene_under_start .context{
-    width: 560px;
+    width: 660px;
     margin: auto;
 }
-.context--answer{
-    width: 240px;
-    position: relative;
-}
-.context--answer .row_1{
-    height: 294px;
-    width: 240px;
-    padding: 0 13px;
-}
-.context--answer__kid{
+.aside_left .aside_left--kid{
     height: 100%;
     width: 138px;
+    background: url('../../images/kid_1.svg') no-repeat bottom;
 }
-.aside-right .context--answer__floor{
-    width: 240px;
-    height: 60px;
-    background-image: url('../../images/71.png');
+.aside_left--drag_block_area{
+    height: 100%;
+    width: 160px;
+    background-color: rgba(219, 214, 164, 0.5);
+}
+.aside_left--blocks{
+    width: 80px;
+    height: 100%;
+    background: url('../../images/28.png') no-repeat;
     background-size: contain;
-    position: absolute;
-    top: 261px;
-    z-index: -1;
+    background-position: center center;
+    padding-left: 2px;
 }
-.aside_left .context--answer__floor{
+.aside_left .aside_left--floor{
     width: 380px;
     height: 60px;
-    background: url('../../images/floor.png') no-repeat;
-    background-size: contain;
-    background-position: 0 0;
+    background: url('../../images/shadowBig.png');
     position: absolute;
-    top: 261px;
+    top: 354px;
     z-index: -1;
 }
-.context--answer__blocks{
-    /* width: 60px; */
-    width: 70px;
-    height: 100%;
+.context .arrows_list{
+    width: 40px;
+    height: 295px;
     position: relative;
 }
-.context--answer__blocks .block{
+.arrows_list--item{
+    width: 100%;
+    height: 20px;
+    position: absolute;
+}
+.aside_right--blocks{
+    width: 80px;
+    height: 100%;
+    padding-left: 20px;
+}
+.aside_right .aside_right--kid{
+    height: 100%;
+    width: 138px;
+    background: url('../../images/kid_2.svg') no-repeat bottom;
+}
+.aside_right--floor{
+    width: 240px;
+    height: 60px;
+    background: url('../../images/floor.png');
+    position: absolute;
+    top: 354px;
+    z-index: -1;
+}
+.block{
     width: 60px;
     height: 53px;
     position: absolute;
 }
-.context--answer__blocks .block_0{
-    bottom: 0px;
-}
-.context--answer__blocks .block_1{
-    bottom: 46px;
-}
-.context--answer__blocks .block_2{
-    bottom: 92px;
-}
-.context--answer__blocks .block_3{
-    bottom: 138px;
-}
-.context--answer__blocks .block_4{
-    bottom: 184px;
-}
-.answer{
-    width: 100%;
-    height: 150px;
-    margin-top: 30px;
-    position: relative;
-}
-.answer_1{
-    display: inline-block;
+.x-sign{
+    width: 60px;
+    height: 60px;
     position: absolute;
-    top: 0px;
-    left: 250px;
 }
-.answer_2{
-    display: inline-block;
-    position: absolute;
-    top: 0px;
-    left: 380px;
+.context--answer{
+    margin-top: 20px;
 }
-.answer_3{
-    display: inline-block;
-    position: absolute;
-    top: 0px;
-    left: 610px;
-}
-.context--answer__name{
+.context--answer span{
     font-size: 30px;
 }
-.context--answer__ok{
+.context--answer button{
     display: block;
     height: 45px;
     width: 56px;
@@ -105,41 +100,4 @@
     cursor: pointer;
     border: none;
     margin: auto;
-}
-/* .background_green {
-    background-color: rgb(106, 219, 72);
-}
-.background_red{
-    background-color: #FF5D6A;
-} */
-.aside_left .context--answer__kid{
-    background: url('../../images/kid_1.svg') no-repeat bottom;
-}
-.aside_right .context--answer__kid{
-    background: url('../../images/kid_2.svg') no-repeat bottom;
-}
-.context .arrows_list{
-    width: 40px;
-    height: 295px;
-    position: relative;
-}
-.arrows_list .arrows_item_0{
-    position: absolute;
-    bottom: 13px;
-}
-.arrows_list .arrows_item_1{
-    position: absolute;
-    bottom: 59px;
-}
-.arrows_list .arrows_item_2{
-    position: absolute;
-    bottom: 105px;
-}
-.arrows_list .arrows_item_3{
-    position: absolute;
-    bottom: 151px;
-}
-.arrows_list .arrows_item_4{
-    position: absolute;
-    bottom: 197px;
 }
