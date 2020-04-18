@@ -49,6 +49,7 @@
 }
 .arrow{
     width: 40px;
+    animation: fadeIn 1s;
 }
 .green-arrow{
     background-image: url('../../images/31.png');
@@ -59,6 +60,7 @@
 .x-sign{
     background-image: url("../../images/XSign.png");
     width: 40px;
+    animation: fadeIn 1s;
 }
 .context--answer__blocks .block{
     position: absolute;
