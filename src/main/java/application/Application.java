@@ -1,23 +1,24 @@
 package application;
 
-import questionFactory.BuildTowerAndCompareFactory;
-import questionFactory.CompareBlockFactory;
-import questionFactory.CompareTrainCartFactory;
+import exception.StageCloseException;
 
 public class Application {
     private Stage[] stages;
     int currentStage = 0;
 
     public  Application(){
-        stages = new Stage[4];
-        stages[0] = new Stage(new CompareBlockFactory(),6);
-        stages[1] = new Stage(new BuildTowerAndCompareFactory(),3);
-        stages[2] = new Stage(new BuildTowerAndCompareFactory(),5);
-        stages[3] = new Stage(new CompareTrainCartFactory(),5);
+        stages = Stage.ALL;
         stages[currentStage].open();
     }
-    public void checkStage(){
-        if(stages[currentStage].isCompleted()) currentStage++;
+
+    public void openNextStage(){
+        currentStage++;
         stages[currentStage].open();
+    }
+
+    public Stage getStage(int stageID) throws StageCloseException{
+        Stage res = stages[stageID - 1];
+        if (!res.isOpened()) throw new StageCloseException();
+        return stages[stageID - 1];
     }
 }

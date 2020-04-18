@@ -14,7 +14,7 @@
     width: 1024px;
     height: 100%;
     margin: auto;
-    background: url('/resources/main_page/images/banner.svg') no-repeat -340px center;
+    background: url('../../images/banner.svg') no-repeat -340px center;
     background-size: auto 97px;
 }
 .header{
@@ -39,7 +39,7 @@
     display: inline-block;
     width: 160px;
     height: 100%;
-    background: url('/resources/main_page/images/header-logo.svg') center no-repeat;
+    background: url('../../images/header-logo.svg') center no-repeat;
 }
 .header--nav-item{
     margin-right: 28px;
@@ -114,7 +114,7 @@
     line-height: 60px;
 }
 
-a:hover {
+.back-btn-block:hover {
     text-decoration: none;
 }
 .back-btn-block{
@@ -159,7 +159,7 @@ a:hover {
     width: 40px;
     height: 40px;
     background-color: #b0d2a8;
-    background-image: url('/resources/main_page/images/card_play_btn.svg');
+    background-image: url('../../images/card_play_btn.svg');
     border-radius: 50%;
     background-repeat: no-repeat;
     background-position: center center;
@@ -173,14 +173,13 @@ a:hover {
     border: 4px solid #b0d2a8;
     border-radius: 10px;
     box-shadow: 4px 5px 0 #fff;
-
     background-position: center center;
 }
 .lesson-card-row .first, .lesson-card-row .second, .lesson-card-row .third{
-    background: url('/resources/main_page/images/compare-block.png') no-repeat;
+    background: url('../../images/compare-block.png') no-repeat;
 }
 .lesson-card-row .last{
-    background: url('/resources/main_page/images/compare-traincart.png') no-repeat;
+    background: url('../../images/compare-traincart.png') no-repeat;
 }
 .lesson-card-item--title{
     padding: 0 5px 0 0;
@@ -191,4 +190,10 @@ a:hover {
     color: #000;
     transition: 0.3s;
     cursor: pointer;
+}
+.lesson-card-item--title:hover {
+    color: #FF5D6A;
+}
+.lesson-card-item a:hover {
+    text-decoration: none;
 }

@@ -1,75 +1,109 @@
 package application;
 
 import answer.Answer;
+import answer.BiggerOrSmallerAnswer;
+import answer.BiggerOrSmallerOrEqualAnswer;
+import answer.GiveNumberAnswer;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import question.Question;
-import questionFactory.QuestionFactory;
+import questionFactory.*;
 
-public class Stage {
+public enum Stage {
+    STAGE1(new CompareBlockFactory(), 6),
+    STAGE2(new GiveTheSameNumberFactory(), 3),
+    STAGE3(new BuildTowerAndCompareFactory(), 5),
+    STAGE4(new CompareTrainCartFactory(), 5);
+
+    public static Stage[] ALL = {STAGE1, STAGE2, STAGE3, STAGE4};
+    public static final Application app = (Application) new ClassPathXmlApplicationContext("config/Beans.xml").getBean("app");
+
     private QuestionFactory questionFactory;
     private Question currentQuestion;
+
     private int trueAnswerRequired;
     private int currentTrueAnswer;
+
     private boolean completed;
     private boolean isOpened;
-    private boolean firstTime = true;
 
-    public Stage(QuestionFactory questionFactory,int trueAnswerRequired){
+    Stage(QuestionFactory questionFactory,int trueAnswerRequired){
         this.questionFactory = questionFactory;
         this.trueAnswerRequired = trueAnswerRequired;
-        currentQuestion = null;
+        this.currentQuestion = null;
         this.currentTrueAnswer = 0;
 
+        this.isOpened = false;
+        this.completed = false;
     }
-
-    void generateNewQuestion(){
-        if (currentQuestion == null){
-            currentQuestion = questionFactory.createQuestion();
-        } else {
-            Question temp;
-            do {
-                temp = questionFactory.createQuestion();
-            } while ( temp.equals(currentQuestion));
-
-            currentQuestion = temp;
-        }
-
-        firstTime = true;
-    }
-
-    //khong biet dat ten ham nhung dai loai la:
-//     + Nếu currentQuestion == null thì tạo moi
 
 
     void open(){
         isOpened = true;
     }
 
-    void reply(Answer ans){
-        if(firstTime){
-            if (ans == currentQuestion.getAnswer()) {
-                // tao hieu ung bay cai vien dan khi currentTrueAnswer > 0
-                currentTrueAnswer++;
-                complete();
-                generateNewQuestion();
+    public String getQuestion(){
+        if (currentQuestion == null) generateNewQuestion();
+        return currentQuestion.toString();
+    }
 
-            } else{
-                firstTime = false;
-                //cho vien dan quay lai neu currentTrueAnser > 0
-                currentTrueAnswer--;
-            }
-        } else {
-            if(ans == currentQuestion.getAnswer()){
-                generateNewQuestion();
-            } else firstTime = false;
+    public void generateNewQuestion(){
+        currentQuestion = questionFactory.createQuestion();
+    }
+
+    public Answer toAnswer(String t){
+        switch (this){
+            case STAGE1:
+                return BiggerOrSmallerAnswer.valueOf(t);
+            case STAGE2:
+                return new GiveNumberAnswer(Integer.parseInt(t));
+            case STAGE3:
+            case STAGE4:
+                return BiggerOrSmallerOrEqualAnswer.valueOf(t);
+            default:
+                return null;
         }
     }
 
-    void complete(){
-        if (currentTrueAnswer == trueAnswerRequired)
-            completed = true;
+    public String reply(Answer answer) {
+        if (isTrueAnswer(answer)){
+            trueAnswerHandle();
+            return "true";
+        }else {
+            falseAnswerHandle();
+            return "false";
+        }
     }
 
-    public boolean isCompleted() {
-        return completed;
+    private boolean isTrueAnswer(Answer ans){
+        return currentQuestion.getAnswer().compare(ans);
+    }
+
+    private void trueAnswerHandle() {
+        currentTrueAnswer++;
+        currentQuestion = null;
+        if (currentTrueAnswer == trueAnswerRequired) this.complete();
+    }
+
+    private void falseAnswerHandle() {
+        currentTrueAnswer--;
+    }
+
+    void complete(){
+        if (!completed) {
+            completed = true;
+            app.openNextStage();
+        }
+    }
+
+    public boolean isOpened(){
+        return isOpened;
+    }
+
+    public void setCurrentTrueAnswer(int i) {
+        this.currentTrueAnswer = i;
+    }
+
+    public int getTrueAnswerRequired() {
+        return trueAnswerRequired;
     }
 }

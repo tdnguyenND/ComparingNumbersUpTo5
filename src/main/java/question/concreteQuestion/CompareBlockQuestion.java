@@ -15,9 +15,9 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
 
 
     public CompareBlockQuestion(){
-        number1 = (int) (Math.random() * rNumber + 1);
+        number1 = (int) ( Math.random() * rNumber +1);
         do {
-            number2 =  (int) (Math.random() * rNumber + 1);
+            number2 = (int) (Math.random() * rNumber) + 1;
         } while (number2 == number1);
     }
 
@@ -30,20 +30,6 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
 
     @Override
     public String toString() {
-
         return "{\n\t\"first\": " + number1 + ",\n\t\"second\": " + number2 + "\n}";
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if ( this == obj ) return true;
-        if( obj == null ) return false;
-        if ( obj instanceof CompareBlockQuestion ){
-            CompareBlockQuestion other = (CompareBlockQuestion) obj;
-            if( other.number1 == this.number1 && other.number2 == this.number2 )
-                return true;
-            return false;
-        }
-        return false;
     }
 }
