@@ -1,0 +1,112 @@
+/* caption */
+.caption{
+    margin: 15px 0px 20px 0px;
+}
+.caption_one{
+    text-align: center;
+    font-size: 35px;
+    color: rgba(0,0,0,.3);
+}
+.caption_two{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+}
+/* drag element area */
+.drag_element_area{
+    width: 400px;
+    height: 180px;
+    background-color: rgb(132, 183, 207);
+    margin: auto;
+}
+
+/* train above */
+.train_above .train{
+    margin-right: 340px;
+}
+.train_above .kid{
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    width: 220px;
+    height: 140px;
+    background-image: url('../../images/kid3.svg');
+    background-size: cover;
+}
+/* train below */
+.train_below{
+    margin-left: 95px;
+}
+.train_below .kid{
+    width: 220px;
+    height: 100px;
+    background: url('../../images/kid4.svg') no-repeat;
+    background-size: con;
+    background-position: center center;
+    display: inline-block;
+}
+/* item */
+.rails{
+    width: 60px;
+    height: 60px;
+    background: url('../../images/track.png') no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+}
+.train_car{
+    width: 60px;
+    height: 60px;
+    background: url('../../images/train_car_1.png') no-repeat;
+    background-size: contain;
+    background-position: center center;
+    transition: 1.25s;
+}
+.arrows div{
+    width: 60px;
+    height: 40px;
+    background-size: cover;
+    background-position: center center;
+}
+.arrow-red{
+    background: url('../../images/arrow_red_2.png');
+}
+.arrow-green{
+    background: url('../../images/arrow_green_2.png');
+}
+.x-sign{
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center center;
+    background: url('../../images/XSign.png');
+}
+.context--answer{
+    margin-top: 40px;
+    font-size: 24px;
+}
+.context--answer button{
+    height: 45px;
+    width: 56px;
+    padding: 2px 3px;
+    border-radius: 5px;
+    background: #6ec3e2;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    border: none;
+    margin: auto;
+}
+@keyframes jump {
+    20%{
+        transform: translate(0, 15%)  scale(1.1, .8);
+    }
+    50% {
+        transform: translate(0%, -50%) scale(1, 1) ;
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+.jump {
+    animation: jump 1.25s;
+}
