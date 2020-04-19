@@ -75,7 +75,7 @@ Components = function () {
         <div class="d-flex justify-content-between" style="height: 300px;">
             <div class="aside_left d-flex">
                 <div class="aside_left--kid"></div>
-                <div class="aside_left--drag_block_area">
+                <div id="group-block" class="aside_left--drag_block_area">
                 </div>
                 <div id="list-block-one" class="aside_left--blocks" onmousedown="return false">
                 </div>
@@ -92,15 +92,15 @@ Components = function () {
         </div>
     </div>
     <div class="context--answer d-flex justify-content-around">
-        <div class="answer_one">
+        <div id="answer1" class="answer_one" data-value="SMALLER">
             <span>Lan</span>
             <button>OK</button>
         </div>
-        <div class="answer_two">
+        <div id="answer2" class="answer_two" data-value="EQUAL">
             <span>Bằng nhau</span>
             <button>OK</button>
         </div>
-        <div class="answer_three">
+        <div id="answer3" class="answer_three" data-value="BIGGER">
             <span>Long</span>
             <button>OK</button>
         </div>

@@ -31,15 +31,13 @@
 .aside_left--blocks{
     width: 80px;
     height: 100%;
-    background: url('../../images/28.png') no-repeat;
     background-size: contain;
-    background-position: center center;
+    background: url('../../images/28.png') no-repeat center;
     padding-left: 2px;
 }
 .aside_left .aside_left--floor{
     width: 380px;
     height: 60px;
-    background: url('../../images/shadowBig.png');
     position: absolute;
     top: 354px;
     z-index: -1;
@@ -47,7 +45,6 @@
 .context .arrows_list{
     width: 40px;
     height: 295px;
-    position: relative;
 }
 .arrows_list--item{
     width: 100%;
@@ -72,15 +69,29 @@
     top: 354px;
     z-index: -1;
 }
-.block{
-    width: 60px;
+.item{
     height: 53px;
+    border: 0;
     position: absolute;
+    background-size: cover;
+    background: no-repeat center;
+}
+.block{
+    background-image: url('../../images/block.png');
+    width: 60px;
+}
+.arrow{
+    width: 40px;
+}
+.green-arrow{
+    background-image: url('../../images/31.png');
+}
+.red-arrow{
+    background-image: url("../../images/33.png");
 }
 .x-sign{
-    width: 60px;
-    height: 60px;
-    position: absolute;
+    background-image: url("../../images/XSign.png");
+    width: 40px;
 }
 .context--answer{
     margin-top: 20px;
