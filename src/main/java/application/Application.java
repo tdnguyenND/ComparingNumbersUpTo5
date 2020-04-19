@@ -18,7 +18,7 @@ public class Application {
 
     public Stage getStage(int stageID) throws StageCloseException{
         Stage res = stages[stageID - 1];
-        if (!res.isOpened()) throw new StageCloseException();
+        //if (!res.isOpened()) throw new StageCloseException();
         return stages[stageID - 1];
     }
 }

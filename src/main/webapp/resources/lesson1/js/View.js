@@ -14,6 +14,7 @@ View = function(){
 
     let arrows = document.getElementById("arrows");
     let smallerChainAddition = document.createElement('div')
+    smallerChainAddition.className = 'signXList'
 
     this.renderQuestion = function(question) {
         document.getElementById("arrows").innerHTML = ''
@@ -57,12 +58,21 @@ View = function(){
             let intervalId = setInterval(() => {
                 if(i < min){
                     // add green arrow
-                    arrows.innerHTML += `<img class="arrows_list--item__green arrows_item_${i}" src=${greenArrowSrc} alt="">`
+                    let arrowGreen = document.createElement('img');
+                    arrowGreen.src = `${greenArrowSrc}`;
+                    arrowGreen.className = `arrows_list--item__green arrows_item_${i}`;
+                    arrows.appendChild(arrowGreen)
                 } else{
                     // add red arrow
-                    arrows.innerHTML += `<img class="arrows_list--item__red arrows_item_${i}" src=${redArrowSrc} alt="">`
+                    let arrowRed = document.createElement('img');
+                    arrowRed.src = `${redArrowSrc}`;
+                    arrowRed.className = `arrows_list--item__red arrows_item_${i}`;
+                    arrows.appendChild(arrowRed);
                     // add x sign
-                    smallerChainAddition.innerHTML += `<img class="block block_${i}" src=${XSignSrc} alt="" style="width: 53px; height: 53px;">`
+                    let signX = document.createElement('img');
+                    signX.src = `${XSignSrc}`;
+                    signX.className = `block block_${i}`;
+                    smallerChainAddition.appendChild(signX)
                 }
                 i++
                 if(i >= max){

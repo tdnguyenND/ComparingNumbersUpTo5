@@ -42,8 +42,9 @@ ItemChain = function(type, id = null, option = null){
     }
 
     let setOrderedPosition = function(newItem){
-        let startHeight = self.domElement.offsetTop + self.domElement.offsetHeight - standardDistance
+        let startHeight = self.domElement.offsetTop + self.domElement.offsetHeight - 60
         newItem.style.top = (startHeight - standardDistance * self.amount)  + 'px'
+        newItem.style.left = 'auto'
     }
 
     this.addItemUnordered = function(item = null, option = null) {
@@ -74,7 +75,7 @@ ItemChain = function(type, id = null, option = null){
     }
 
     this.remove = function(domElement){
-        this.domElement.removeChild(domElement)
+        //this.domElement.removeChild(domElement)
     }
 
     this.cover = function (position) {

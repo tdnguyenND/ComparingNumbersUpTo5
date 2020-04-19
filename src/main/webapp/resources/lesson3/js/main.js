@@ -22,6 +22,7 @@ let fixedChain = new ItemChain('block', 'list-block-two')
 
 let arrow = new ItemChain('arrow', 'arrows')
 let xSignChain = new ItemChain('x-sign')
+let currentQuestion = null
 
 let isFirstAnswer = true
 
@@ -64,18 +65,18 @@ function enableBehavior() {
 handleResult = function (chosenAnswer, result) {
     return new Promise((resolve, reject) => {
         if (result){
-            view.setBackground(chosenAnswer, correctAnswerColor)
+            //view.setBackground(chosenAnswer, correctAnswerColor)
             correctAnswerHandle()
                 .then(checkFinishStage)
                 .then(newQuestion)
                 .then(() => isFirstAnswer = true)
-                .then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
+                //.then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
                 .then(resolve)
         }else{
-            view.setBackground(chosenAnswer, incorrectAnswerColor)
+            //view.setBackground(chosenAnswer, incorrectAnswerColor)
             incorrectAnswerHandle()
                 .then(()=> isFirstAnswer = false)
-                .then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
+                //.then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
                 .then(resolve)
         }
     })
@@ -161,9 +162,11 @@ function newQuestion(){
 }
 
 function renderQuestion(question){
+    currentQuestion = question
     clearQuestion()
     renderArrangedBlocks(question['first'])
     renderUnArrangedBlocks(question['second'])
+    view.setupBeforeAnswer()
 }
 
 function renderArrangedBlocks(number) {
@@ -213,6 +216,7 @@ function startMoving() {
 
     function moveTo(position) {
         setPosition(position.x + 'px', position.y + 'px')
+        //self.style.top = position.y
     }
 
     function setPosition(left, top){
@@ -230,6 +234,9 @@ function startMoving() {
         if (unfixedChain.cover(position) && groupBlock.contain(self)){
             groupBlock.remove(self)
             unfixedChain.addItemOrdered(self)
+            if(unfixedChain.amount == currentQuestion['second']){
+                view.displayRequestNext()
+            }
             self.removeEventListener('mousedown', startMoving)
         }else{
             returnToLastPosition()

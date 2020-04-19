@@ -26,41 +26,44 @@ Components = function () {
                     <button id="answerB" class="context--answer__ok" data-value = "SMALLER">Ok</button>
                 </div>
             </div>`
-    this.lessonTwo = `<div class="caption">
-                Giúp Long có số khối bằng với của Lan nào!
-            </div>
-            <div class="context d-flex">
-                <div class="context--answer answer_1">
-                    <div class="row_1 d-flex justify-content-between">
-                        <div class="context--answer__kid"></div>
-                        <div id="list-block-one" class="context--answer__blocks" onmousedown="return false">
-        
-                        </div>
-                    </div>
-                    <div class="context--answer__floor"></div>
-                </div>
-                <div id="arrows" class="arrows_list">
-                </div>
-                <div class="context--answer answer_2">
-                    <div class="row_1 d-flex justify-content-between">
-                        <div id="list-block-two" class="context--answer__blocks">
-        
-                        </div>
-                        <div class="context--answer__kid"></div>
-                    </div>
-                    <div class="context--answer__floor"></div>
-                </div>
-            </div>
-            <div class="context--drag">
-                <div id="factory" class="context--factory">
-                </div>
-                <div class="context--trash">
-                    <div class="context--trash__block"></div>
-                    <div class="context--trash--front"></div>
-                    <div id="trash" class="drop-block">
-                    </div>
-                </div>
-                <button id="submitAnswer" class="context--drag--done">Hoàn thành</button>
+    this.lessonTwo = `<div class="caption"> 
+                Giúp Long có số khối bằng với của Lan nào! 
+            </div> 
+            <div id="contextQuestion" class="context d-flex"> 
+                <div class="context--answer answer_1"> 
+                    <div class="row_1 d-flex justify-content-between"> 
+                        <div class="context--answer__kid"></div> 
+                        <div id="list-block-one" class="context--answer__blocks" onmousedown="return false"> 
+         
+                        </div> 
+                    </div> 
+                    <div class="context--answer__floor"></div> 
+                </div> 
+                <div id="arrows" class="arrows_list"> 
+                </div> 
+                <div class="context--answer answer_2"> 
+                    <div class="row_1 d-flex justify-content-between"> 
+                        <div id="list-block-two" class="context--answer__blocks"> 
+         
+                        </div> 
+                        <div class="context--answer__kid"></div> 
+                    </div> 
+                    <div class="context--answer__floor"></div> 
+                </div> 
+            </div> 
+            <div class="context--drag"> 
+                <div id="factory" class="context--factory"> 
+                </div> 
+                <div class="context--trash"> 
+                    <div class="context--trash__block">
+                        <div class="item block"></div>
+                    </div> 
+                    <div class="context--trash--front"></div> 
+                    <div id="trash" class="drop-block"> 
+                    </div> 
+                </div> 
+                <button id="submitAnswer" class="context--drag--done">Hoàn thành</button> 
+                <button id="reworkBtn" class="context--drag--rework" style="display: none">Làm lại</button>
             </div>`
     this.lessonThree = `<div class="caption">
     <div class="caption_one">
@@ -72,14 +75,14 @@ Components = function () {
 </div>
 <div class="context">
     <div class="context--question  d-flex">
-        <div class="d-flex justify-content-between" style="height: 300px;">
+        <div class="d-flex justify-content-between" style="height: 276px">
             <div class="aside_left d-flex">
                 <div class="aside_left--kid"></div>
                 <div id="group-block" class="aside_left--drag_block_area">
                 </div>
                 <div id="list-block-one" class="aside_left--blocks" onmousedown="return false">
                 </div>
-                <div class="aside_left--floor"></div>
+                <div class="big--floor"></div>
             </div>
             <div id="arrows" class="arrows_list">
             </div>
@@ -87,22 +90,23 @@ Components = function () {
                 <div id="list-block-two" class="aside_right--blocks">
                 </div>
                 <div class="aside_right--kid"></div>
-                <div class="aside_right--floor"></div>
+                <div class="small--floor"></div>
             </div>
         </div>
     </div>
     <div class="context--answer d-flex justify-content-around">
-        <div id="answer1" class="answer_one" data-value="SMALLER">
+        <div id="overlay"></div>
+        <div class="answer_one" >
             <span>Lan</span>
-            <button>OK</button>
+            <button id="answer1" data-value="SMALLER">OK</button>
         </div>
-        <div id="answer2" class="answer_two" data-value="EQUAL">
+        <div class="answer_two" >
             <span>Bằng nhau</span>
-            <button>OK</button>
+            <button id="answer2" data-value="EQUAL">OK</button>
         </div>
-        <div id="answer3" class="answer_three" data-value="BIGGER">
+        <div class="answer_three">
             <span>Long</span>
-            <button>OK</button>
+            <button id="answer3" data-value="BIGGER">OK</button>
         </div>
     </div>
 </div>`
