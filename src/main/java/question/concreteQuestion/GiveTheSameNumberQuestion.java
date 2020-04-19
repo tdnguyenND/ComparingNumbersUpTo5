@@ -5,14 +5,13 @@ import answer.GiveNumberAnswer;
 import entity.Block;
 import question.abstractQuestion.GiveNumberQuestion;
 
+
 public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     private Block[] fixedBlock;
-    private final int rNumber = 5;
+    private final int rNumber = 4;
 
     public GiveTheSameNumberQuestion(){
-        int value = (int)  (Math.random() * rNumber + 1);
-        answer = new GiveNumberAnswer(value);
-        fixedBlock = new Block[value];
+        answer = new GiveNumberAnswer( (int) (Math.random() * rNumber + 1));
     }
 
     @Override
@@ -24,5 +23,4 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     public String toString() {
         return "{\"fixedNumber\": \"" + fixedBlock.length + "\"}";
     }
-
 }
