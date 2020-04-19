@@ -11,7 +11,8 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
     private final int rNumber = 4;
 
     public GiveTheSameNumberQuestion(){
-        answer = new GiveNumberAnswer( (int) (Math.random() * rNumber + 1));
+        fixedBlock = new Block[(int) (Math.random() * rNumber + 1)];
+        answer = new GiveNumberAnswer(fixedBlock.length);
     }
 
     @Override
