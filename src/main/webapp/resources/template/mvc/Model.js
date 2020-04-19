@@ -57,7 +57,16 @@ ItemChain = function(type, id = null, option = null){
     }
 
     let setRandomPosition = function(newItem){
+        let minX = self.domElement.offsetLeft
+        let maxX = self.domElement.offsetLeft + self.domElement.offsetWidth - standardDistance
+        let minY = self.domElement.offsetTop
+        let maxY = self.domElement.offsetTop + self.domElement.offsetHeight - standardDistance
+        newItem.style.left = between(minX, maxX)
+        newItem.style.top = between(minY, maxY)
+    }
 
+    function between(min, max) {
+        return Math.random() * (max - min) + min | 0
     }
 
     this.appendChain = function(chain){
