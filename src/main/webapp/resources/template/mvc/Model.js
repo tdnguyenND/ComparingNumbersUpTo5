@@ -53,13 +53,48 @@ ItemChain = function(type, id = null, option = null){
         if (option !== null){
             option.forEach(opt => item.classList.add(opt))
         }
-        self.domElement.appendChild(item)
         setRandomPosition(item)
+        self.domElement.appendChild(item)
         self.amount++
     }
 
     let setRandomPosition = function(newItem){
+        let minX = self.domElement.offsetLeft
+        let maxX = self.domElement.offsetLeft + self.domElement.offsetWidth - standardDistance
+        let minY = self.domElement.offsetTop
+        let maxY = self.domElement.offsetTop + self.domElement.offsetHeight - standardDistance
+        let left, top
+        do {
+            left = between(minX, maxX)
+            top = between(minY, maxY)
+        }while (!positionEmpty(left, top))
+        newItem.style.left = left
+        newItem.style.top = top
+    }
 
+    function positionEmpty(x, y) {
+        if (self.domElement.getElementsByClassName('item').length === 0) return true
+        let allItems = Array.from(self.domElement.getElementsByClassName('item'))
+        for (let item of allItems){
+            if (itemCover(item, x, y) ||
+                itemCover(item, x + 60, y) ||
+                itemCover(item, x, y + 60) ||
+                itemCover(item, x + 60, y + 60))
+                return false
+        }
+        return true
+    }
+
+    function itemCover(item, x, y) {
+        let minX = item.offsetLeft
+        let maxX = item.offsetLeft + item.offsetWidth
+        let minY = item.offsetTop
+        let maxY = item.offsetTop + item.offsetHeight
+        if (x >= minX && x <= maxX && y <= maxY && y >= minY)return true
+    }
+
+    function between(min, max) {
+        return (Math.random()*(max - min) + min)|0
     }
 
     this.appendChain = function(chain){
@@ -106,6 +141,7 @@ ItemChain = function(type, id = null, option = null){
 
 VerticalItemChain = function (type, id = null, option = null) {
     let self = this
+    const standardDistance = 60
 
     this.classes = ['item', type]
     if (option !== null){
@@ -135,7 +171,42 @@ VerticalItemChain = function (type, id = null, option = null) {
     }
 
     let setRandomPosition = function(newItem){
+        let minX = self.domElement.offsetLeft
+        let maxX = self.domElement.offsetLeft + self.domElement.offsetWidth - standardDistance
+        let minY = self.domElement.offsetTop
+        let maxY = self.domElement.offsetTop + self.domElement.offsetHeight - standardDistance
+        let left, top
+        do {
+            left = between(minX, maxX)
+            top = between(minY, maxY)
+        }while (!positionEmpty(left, top))
+        newItem.style.left = left
+        newItem.style.top = top
+    }
 
+    function between(min, max) {
+        return (Math.random()*(max - min) + min)|0
+    }
+
+    function positionEmpty(x, y) {
+        if (self.domElement.getElementsByClassName('item').length === 0) return true
+        let allItems = Array.from(self.domElement.getElementsByClassName('item'))
+        for (let item of allItems){
+            if (itemCover(item, x, y) ||
+                itemCover(item, x + 60, y) ||
+                itemCover(item, x, y + 60) ||
+                itemCover(item, x + 60, y + 60))
+                return false
+        }
+        return true
+    }
+
+    function itemCover(item, x, y) {
+        let minX = item.offsetLeft
+        let maxX = item.offsetLeft + item.offsetWidth
+        let minY = item.offsetTop
+        let maxY = item.offsetTop + item.offsetHeight
+        if (x >= minX && x <= maxX && y <= maxY && y >= minY)return true
     }
 
     this.isTargeted = function(event){
