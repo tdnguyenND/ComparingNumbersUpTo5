@@ -28,6 +28,15 @@ let countTrueAnswer = 0
 
 let isFirstAnswer = true
 
+let listBall = document.getElementById('list-ball')
+for (let i = 0; i < model.numberQuestionOfLesson; i++) {
+    let ball = document.createElement('div')
+    ball.id = 'ball_' + i
+    ball.setAttribute('class', 'ball')
+    ball.style.left = (4 + i * 24) + 'px'
+    listBall.appendChild(ball)
+}
+
 function launch() {
     listenBasicEvent()
     newQuestion()
@@ -90,7 +99,7 @@ correctAnswerHandle = function () {
     return new Promise((resolve, reject) => {
         if (isFirstAnswer){
             model.currentCorrectAnswer++
-            view.moveBallRight(model.currentCorrectAnswer - 1)
+            view.moveBallRight(model.currentCorrectAnswer, model.numberQuestionOfLesson)
         }
         setTimeout(resolve, submitAnswerDelay)
     })
@@ -124,7 +133,7 @@ incorrectAnswerHandle = function() {
     return new Promise((resolve, reject) => {
         if (isFirstAnswer && model.currentCorrectAnswer > 0){
             model.currentCorrectAnswer--
-            view.moveBallLeft(model.currentCorrectAnswer)
+            view.moveBallLeft(model.currentCorrectAnswer, model.numberQuestionOfLesson)
         }
         displaySuggestion()
             .then(resolve)

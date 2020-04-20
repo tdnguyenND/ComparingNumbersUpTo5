@@ -19,6 +19,15 @@ let isFirstAnswer = true
 let container = document.getElementById('under-start-wall')
 let containerSize = container.getBoundingClientRect()
 
+let listBall = document.getElementById('list-ball')
+for (let i = 0; i < model.numberQuestionOfLesson; i++) {
+    let ball = document.createElement('div')
+    ball.id = 'ball_' + i
+    ball.setAttribute('class', 'ball')
+    ball.style.left = (4 + i * 24) + 'px'
+    listBall.appendChild(ball)
+}
+
 launch = function(){
     view.beforeBuildColumn()
     newQuestion()
@@ -179,7 +188,7 @@ correctAnswerHandle = function () {
     return new Promise((resolve, reject) => {
         if (isFirstAnswer){
             model.currentCorrectAnswer++
-            view.moveBallRight(model.currentCorrectAnswer - 1)
+            view.moveBallRight(model.currentCorrectAnswer, model.numberQuestionOfLesson)
         }
         setTimeout(resolve, submitAnswerDelay)
     })
@@ -189,7 +198,7 @@ incorrectAnswerHandle = function() {
     return new Promise((resolve, reject) => {
         if (isFirstAnswer && model.currentCorrectAnswer > 0){
             model.currentCorrectAnswer--
-            view.moveBallLeft(model.currentCorrectAnswer)
+            view.moveBallLeft(model.currentCorrectAnswer, model.numberQuestionOfLesson)
         }
         view.displaySuggestion()
             .then(view.reworkBtnAppear)

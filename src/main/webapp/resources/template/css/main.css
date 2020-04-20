@@ -81,24 +81,6 @@ img.uchiru_bg_color{
     transition: 1s;
     position: absolute;
 }
-#ball_5{
-    left: 4px;
-}
-#ball_4{
-    left: 28px;
-}
-#ball_3{
-    left: 52px;
-}
-#ball_2{
-    left: 76px;
-}
-#ball_1{
-    left: 100px;
-}
-#ball_0{
-    left: 124px;
-}
 .uchiru_box--body{
     position: relative;
     width: 100%;

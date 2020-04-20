@@ -33,8 +33,7 @@ Components = function () {
                 <div class="context--answer answer_1"> 
                     <div class="row_1 d-flex justify-content-between"> 
                         <div class="context--answer__kid"></div> 
-                        <div id="list-block-one" class="context--answer__blocks" onmousedown="return false"> 
-         
+                        <div id="list-block-one" class="context--answer__blocks" onmousedown="return false">
                         </div> 
                     </div> 
                     <div class="context--answer__floor"></div> 
@@ -163,13 +162,7 @@ Components = function () {
                             <i class="fas fa-angle-left"></i>
                             Trở về
                         </span>
-                    <div class="inner_process d-flex align-items-center">
-                        <div id="ball_5" class="ball"></div>
-                        <div id="ball_4" class="ball"></div>
-                        <div id="ball_3" class="ball"></div>
-                        <div id="ball_2" class="ball"></div>
-                        <div id="ball_1" class="ball"></div>
-                        <div id="ball_0" class="ball"></div>
+                    <div id="list-ball" class="inner_process d-flex align-items-center">
                     </div>
                     <span>
                             Ngôn ngữ

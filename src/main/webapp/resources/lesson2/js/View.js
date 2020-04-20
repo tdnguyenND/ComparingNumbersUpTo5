@@ -87,14 +87,14 @@ View = function(){
         element.style.backgroundImage = background
     }
 
-    this.moveBallRight = function(ballID){
-        let ml = 440 - 24 * ballID
-        document.getElementById(`ball_${ballID}`).style.left = ml.toString() + "px";
+    this.moveBallRight = function(currentTrueAnswer, totalBall){
+        let ml = 464 - 24 * currentTrueAnswer
+        document.getElementById(`ball_${totalBall - currentTrueAnswer}`).style.left = ml.toString() + "px";
     }
 
-    this.moveBallLeft = function(ballID){
-        let ml = 124 - 24 * ballID
-        document.getElementById(`ball_${ballID}`).style.left = ml.toString() + "px";
+    this.moveBallLeft = function(currentTrueAnswer, totalBall){
+        let ml = 4 + 24 * (totalBall - currentTrueAnswer - 1)
+        document.getElementById(`ball_${totalBall - currentTrueAnswer - 1}`).style.left = ml.toString() + "px";
     }
 
     this.addBlockInto = function(element, option = null){
