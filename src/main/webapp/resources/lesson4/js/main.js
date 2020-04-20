@@ -24,28 +24,29 @@ let arrow = new VerticalItemChain('arrow', 'arrows')
 let xSignChain = new VerticalItemChain('x-sign')
 
 let isFirstAnswer = true
+let currentQuestion = null
 
 function launch() {
     listenBasicEvent()
     newQuestion()
 }
 
-function listenBasicEvent(){
+function listenBasicEvent() {
     backButton.addEventListener('click', back)
     startButton.addEventListener('click', start)
     allAnswerBtn.forEach(btn => btn.addEventListener('click', submitAnswer))
-    window.addEventListener('resize', ()=> containerSize = container.getBoundingClientRect())
+    window.addEventListener('resize', () => containerSize = container.getBoundingClientRect())
 }
 
-back = function(){
+back = function () {
     window.location = '/'
 }
 
-start = function(){
+start = function () {
     view.setUpAnswerScene()
 }
 
-submitAnswer = function(){
+submitAnswer = function () {
     disableBehavior()
     clearSuggestion()
     controller.submitAnswer(this.dataset.value)
@@ -63,35 +64,31 @@ function enableBehavior() {
 
 handleResult = function (chosenAnswer, result) {
     return new Promise((resolve, reject) => {
-        if (result){
-            view.setBackground(chosenAnswer, correctAnswerColor)
+        if (result) {
             correctAnswerHandle()
                 .then(checkFinishStage)
                 .then(clearQuestion)
                 .then(newQuestion)
                 .then(() => isFirstAnswer = true)
-                .then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
                 .then(resolve)
-        }else{
-            view.setBackground(chosenAnswer, incorrectAnswerColor)
+        } else {
             incorrectAnswerHandle()
-                .then(()=> isFirstAnswer = false)
-                .then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
+                .then(() => isFirstAnswer = false)
                 .then(resolve)
         }
     })
 }
 correctAnswerHandle = function () {
     return new Promise((resolve, reject) => {
-        if (isFirstAnswer){
+        if (isFirstAnswer) {
             model.currentCorrectAnswer++
-            view.moveBallRight(model.currentCorrectAnswer - 1)
+            jumpTrainCar().then(view.moveBallRight(model.currentCorrectAnswer - 1))
         }
         setTimeout(resolve, submitAnswerDelay)
     })
 }
 
-checkFinishStage = function(){
+checkFinishStage = function () {
     return new Promise((resolve, reject) => {
         if (model.isFinish()) window.location = "/completed"
         resolve()
@@ -110,16 +107,19 @@ function clearSuggestion() {
     fixedChain.clear('x-sign')
 }
 
-clear = function(){
+clear = function () {
     clearQuestion();
     clearSuggestion();
 }
 
-incorrectAnswerHandle = function() {
+incorrectAnswerHandle = function () {
     return new Promise((resolve, reject) => {
-        if (isFirstAnswer && model.currentCorrectAnswer > 0){
-            model.currentCorrectAnswer--
-            view.moveBallLeft(model.currentCorrectAnswer)
+        if (isFirstAnswer) {
+            unfixedChain.reverseArrangeTrain()
+            if (model.currentCorrectAnswer > 0) {
+                model.currentCorrectAnswer--
+                view.moveBallLeft(model.currentCorrectAnswer)
+            }
         }
         displaySuggestion()
             .then(resolve)
@@ -127,51 +127,79 @@ incorrectAnswerHandle = function() {
 }
 
 function displaySuggestion() {
-    unfixedChain.reverseArrangeTrain()
+    arrow.domElement.classList.add('arrows')
+    arrow.domElement.classList.add('d-flex')
     let amount1 = unfixedChain.domElement.getElementsByClassName('train_car').length
     let amount2 = fixedChain.domElement.getElementsByClassName('train_car').length
     let min, max, smaller
-    if (amount2 > amount1){
+    if (amount2 > amount1) {
         min = amount1
         max = amount2
         smaller = unfixedChain
-    }else {
+        arrow.domElement.classList.add('flex-row-reverse')
+        return new Promise((resolve, reject) => {
+            let i = 1
+            let interval = setInterval(() => {
+                if (i <= min) arrow.addItem(['arrow-green'])
+                else {
+                    arrow.addItem(['arrow-red'])
+                    smaller.addXSign(6 - i)
+                }
+                i++
+                if (i > max) {
+                    clearInterval(interval)
+                    resolve()
+                }
+            }, 1000)
+        })
+    } else {
         min = amount2
         max = amount1
         smaller = fixedChain
+        return new Promise((resolve, reject) => {
+            let i = 1
+            let interval = setInterval(() => {
+                if (i <= min) arrow.addItem(['arrow-green'])
+                else {
+                    arrow.addItem(['arrow-red'])
+                    smaller.addXSign(i)
+                }
+                i++
+                if (i > max) {
+                    clearInterval(interval)
+                    resolve()
+                }
+            }, 1000)
+        })
     }
+
+}
+
+function jumpTrainCar() {
     return new Promise((resolve, reject) => {
-        let i = 1
-        let interval = setInterval(()=>{
-            if (i <= min) arrow.addItem(['arrow-green'])
-            else {
-                arrow.addItem(['arrow-red'])
-                smaller.addXSign(i)
-            }
-            i++
-            if (i > max){
-                clearInterval(interval)
-                resolve()
-            }
-        }, 1000)
+        unfixedChain.jump()
+        fixedChain.jump()
+        resolve()
     })
 }
 
-function newQuestion(){
+function newQuestion() {
     controller.getQuestion()
         .then(response => renderQuestion(response.data))
         .then(listenMoveBlockEvent)
 }
 
-function renderQuestion(question){
+function renderQuestion(question) {
+    currentQuestion = question
     renderUnfixedChain(question['first'])
     renderFixedChain(question['second'])
+    view.setupBeforeAnswer(question)
 }
 
 function renderFixedChain(number) {
     for (let i = 0; i < number; i++)
         fixedChain.addItem()
-    Array.from(fixedChain.domElement.getElementsByClassName('rails')).forEach(rail=>{
+    Array.from(fixedChain.domElement.getElementsByClassName('rails')).forEach(rail => {
         let train = document.createElement('div')
         train.classList.add('item')
         train.classList.add('train_car')
@@ -186,7 +214,7 @@ function renderUnfixedChain(number) {
         groupTrain.addItemUnordered()
 }
 
-function listenMoveBlockEvent(){
+function listenMoveBlockEvent() {
     Array.from(groupTrain.domElement.getElementsByClassName('draggable'))
         .forEach(ele => ele.addEventListener('mousedown', startMoving))
 }
@@ -196,7 +224,8 @@ function startMoving() {
     self.style.zIndex = '1000'
 
     let previousPosition = saveLastPosition()
-    function saveLastPosition(){
+
+    function saveLastPosition() {
         return {
             left: self.style.left,
             top: self.style.top
@@ -206,7 +235,7 @@ function startMoving() {
     document.addEventListener("mousemove", followCursor)
     document.addEventListener("mouseup", dropItem)
 
-    function followCursor(event){
+    function followCursor(event) {
         let position = getCursorPositionWithContainer(event)
         moveTo(position)
     }
@@ -214,8 +243,8 @@ function startMoving() {
     function getCursorPositionWithContainer(event) {
         let x = event.pageX
         let y = event.pageY
-        let mouseX = Math.min(Math.max(x - containerSize.left - self.offsetWidth/2, 0), containerSize.width - self.offsetWidth)
-        let mouseY = Math.min(Math.max(y - containerSize.top - self.offsetHeight/2, 0), containerSize.height - self.offsetHeight)
+        let mouseX = Math.min(Math.max(x - containerSize.left - self.offsetWidth / 2, 0), containerSize.width - self.offsetWidth)
+        let mouseY = Math.min(Math.max(y - containerSize.top - self.offsetHeight / 2, 0), containerSize.height - self.offsetHeight)
         return {
             x: mouseX,
             y: mouseY
@@ -226,27 +255,30 @@ function startMoving() {
         setPosition(position.x + 'px', position.y + 'px')
     }
 
-    function setPosition(left, top){
+    function setPosition(left, top) {
         self.style.left = left
         self.style.top = top
     }
 
-    function dropItem(event){
+    function dropItem(event) {
         putDown(event)
         removeEventListener()
     }
 
     function putDown(event) {
-        if (unfixedChain.isTargeted(event)){
+        if (unfixedChain.isTargeted(event)) {
             let target = unfixedChain.findTarget(event)
-            if (target.getElementsByClassName('train_car').length !== 0){
+            if (target.getElementsByClassName('train_car').length !== 0) {
                 returnToLastPosition()
-            }else{
+            } else {
                 groupTrain.remove(self)
                 self.style = ''
                 target.appendChild(self)
+                if (groupTrain.amount == 0) {
+                    view.displayRequestNext()
+                }
             }
-        }else returnToLastPosition()
+        } else returnToLastPosition()
     }
 
     function returnToLastPosition() {

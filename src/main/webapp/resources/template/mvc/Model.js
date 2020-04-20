@@ -77,6 +77,7 @@ VerticalItemChain = function (type, id = null, option = null) {
 
     this.remove = function(domElement){
         this.domElement.removeChild(domElement)
+        self.amount --
     }
 
     this.clear = function(itemClass = null){
@@ -107,11 +108,41 @@ VerticalItemChain = function (type, id = null, option = null) {
 
     this.reverseArrangeTrain = function () {
         let collection = Array.from(this.domElement.getElementsByClassName('train_car'))
-        collection.forEach(train => {train.parentNode.removeChild(train)})
-        let rails = Array.from(this.domElement.getElementsByClassName('rails'))
-        for (let i = 0; i < 5; i++){
-            if (i >= collection.length) break
-            rails[4 - i].appendChild(collection[i])
-        }
+        let collection1 = Array.from(this.domElement.getElementsByClassName('rails'))
+        let j = 0
+        collection1.forEach(rails =>{
+            let train = rails.querySelector('.train_car')
+            if(train != null){
+                train.style.right = j * 60 + 'px'
+            }
+            j ++
+        })
+
+        return new Promise(function(resolve, reject) {
+            setTimeout(resolve, 100);
+        }).then(function() {
+            let i = 0
+            collection.forEach(train => {
+                train.style.right = i * 60 +  'px'
+                i ++
+            })
+        });
+    }
+
+    this.jump = function () {
+        let trains = Array.from(this.domElement.getElementsByClassName('train_car'))
+        let max = trains.length
+        localStorage.setItem('total', max.toString());
+        return new Promise((resolve, reject) => {
+            let i = 0
+            let interval = setInterval(()=>{
+                trains[i].style.animation = 'jump 1.25s'
+                i++
+                if (i >= max){
+                    clearInterval(interval)
+                    resolve()
+                }
+            }, 400)
+        })
     }
 }

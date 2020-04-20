@@ -135,7 +135,8 @@ Components = function () {
                             </div>
                         </div>
                     </div>
-                    <div class="context--answer d-flex justify-content-around">
+                    <div class="context--answer d-flex justify-content-around">        
+                        <div id="overlay"></div>
                         <div>
                             <span>Long</span>
                             <button id="answer1" data-value="SMALLER">OK</button>
