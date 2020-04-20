@@ -12,15 +12,19 @@ let allAnswerBtn = ['answer1', 'answer2', 'answer3'].map(id => document.getEleme
 let container = document.getElementById('under-start-wall')
 let containerSize = container.getBoundingClientRect()
 
-let groupBlock = new ItemChain('block', 'group-block', ['draggable'])
-let unfixedChain = new ItemChain('block', 'list-block-one')
-let fixedChain = new ItemChain('block', 'list-block-two')
+let leftGroup = new ItemChain('block', 'left-group-block', ['draggable'])
+let leftBlockChain = new ItemChain('block', 'list-block-one')
+
+let rightGroup = new ItemChain('block', 'right-group-block', ['draggable'])
+let rightBlockChain = new ItemChain('block', 'list-block-two')
 
 let arrow = new ItemChain('arrow', 'arrows')
 let xSignChain = new ItemChain('x-sign')
 let currentQuestion = null
 
 let isFirstAnswer = true
+let advanceMode = false
+let countTrueAnswer = 0
 
 let listBall = document.getElementById('list-ball')
 for (let i = 0; i < model.numberQuestionOfLesson; i++) {
@@ -83,6 +87,8 @@ handleResult = function (chosenAnswer, result) {
     })
 }
 correctAnswerHandle = function () {
+    countTrueAnswer++
+    if (countTrueAnswer >= 3) advanceMode = true
     return new Promise((resolve, reject) => {
         if (isFirstAnswer){
             model.currentCorrectAnswer++
@@ -100,9 +106,9 @@ checkFinishStage = function(){
 }
 
 function clearQuestion() {
-    unfixedChain.clear()
-    fixedChain.clear()
-    groupBlock.clear()
+    leftBlockChain.clear()
+    rightBlockChain.clear()
+    leftGroup.clear()
 }
 
 function clearSuggestion() {
@@ -128,12 +134,12 @@ incorrectAnswerHandle = function() {
 
 function displaySuggestion() {
     let bigger, smaller
-    if (unfixedChain.amount > fixedChain.amount){
-        bigger = unfixedChain
-        smaller = fixedChain
+    if (leftBlockChain.amount > rightBlockChain.amount){
+        bigger = leftBlockChain
+        smaller = rightBlockChain
     }else{
-        bigger = fixedChain
-        smaller = unfixedChain
+        bigger = rightBlockChain
+        smaller = leftBlockChain
     }
 
     smaller.appendChain(xSignChain)
@@ -165,29 +171,42 @@ function newQuestion(){
 function renderQuestion(question){
     currentQuestion = question
     clearQuestion()
-    renderArrangedBlocks(question['first'])
-    renderUnArrangedBlocks(question['second'])
-    view.setupBeforeAnswer()
+    renderRightBlocks(question['first'])
+    renderLeftBlocks(question['second'])
+    view.setupBeforeAnswer(advanceMode)
 }
 
-function renderArrangedBlocks(number) {
-    for (let i = 0; i < number; i++)
-        fixedChain.addItemOrdered()
+function renderRightBlocks(number) {
+    if (!advanceMode) {
+        rightGroup.domElement.style.display = 'none'
+        for (let i = 0; i < number; i++)
+            rightBlockChain.addItemOrdered()
+    }else{
+        rightGroup.domElement.style.display = 'block'
+        for (let i = 0; i < number; i++)
+            rightGroup.addItemUnordered()
+    }
 }
 
-function renderUnArrangedBlocks(number) {
+function renderLeftBlocks(number) {
     for (let i = 0; i < number; i++)
-        groupBlock.addItemUnordered()
+        leftGroup.addItemUnordered()
 }
 
 function listenMoveBlockEvent(){
-    Array.from(groupBlock.domElement.getElementsByClassName('draggable'))
-        .forEach(ele => ele.addEventListener('mousedown', startMoving))
+    Array.from(leftGroup.domElement.getElementsByClassName('draggable'))
+        .forEach(ele => ele.addEventListener('mousedown',() => startMoving(ele, leftGroup, leftBlockChain)))
+    Array.from(rightGroup.domElement.getElementsByClassName('draggable'))
+        .forEach(ele => ele.addEventListener('mousedown',() => startMoving(ele, rightGroup, rightBlockChain)))
+    let interval = setInterval(()=>{
+        if (rightGroup.amount === 0 && leftGroup.amount === 0){
+            clearInterval(interval)
+            view.displayRequestNext(advanceMode)
+        }
+    }, 300)
 }
 
-function startMoving() {
-    let self = this
-
+function startMoving(self, src, dest) {
     self.style.zIndex = '1000'
     let previousPosition = saveLastPosition()
     function saveLastPosition(){
@@ -231,12 +250,9 @@ function startMoving() {
 
     function putDown() {
         let position = self.getBoundingClientRect()
-        if (unfixedChain.cover(position) && groupBlock.contain(self)){
-            groupBlock.remove(self)
-            unfixedChain.addItemOrdered(self)
-            if(unfixedChain.amount === currentQuestion['second']){
-                view.displayRequestNext()
-            }
+        if (dest.cover(position) && src.contain(self)){
+            src.remove(self)
+            dest.addItemOrdered(self)
             self.removeEventListener('mousedown', startMoving)
         }else{
             returnToLastPosition()

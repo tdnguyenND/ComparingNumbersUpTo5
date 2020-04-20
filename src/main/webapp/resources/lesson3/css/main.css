@@ -21,7 +21,6 @@
 
 /* context */
 .scene_under_start .context{
-    width: 660px;
     margin: auto;
 }
 .aside_left .aside_left--kid{
@@ -62,10 +61,13 @@
 /*    position: absolute;*/
 /*}*/
 .aside_right--blocks{
-    width: 80px;
+    width: 60px;
     height: 100%;
     margin-left: 20px;
     animation: fadeIn 1s;
+    background-size: 127%;
+    margin-right: 20px;
+    background-position: left bottom;
 }
 .aside_right .aside_right--kid{
     height: 100%;

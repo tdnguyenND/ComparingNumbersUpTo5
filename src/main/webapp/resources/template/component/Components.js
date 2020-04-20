@@ -65,50 +65,52 @@ Components = function () {
                 <button id="reworkBtn" class="context--drag--rework" style="display: none">Làm lại</button>
             </div>`
     this.lessonThree = `<div class="caption">
-    <div class="caption_one">
-        Ai có nhiều khối hơn?
-    </div>
-    <div class="caption_two">
-        Giúp Long có số khối bằng với của Lan nào!
-    </div>
-</div>
-<div class="context">
-    <div class="context--question  d-flex">
-        <div class="d-flex justify-content-between" style="height: 276px">
-            <div class="aside_left d-flex">
-                <div class="aside_left--kid"></div>
-                <div id="group-block" class="aside_left--drag_block_area">
+                    <div class="caption_one">
+                        Ai có nhiều khối hơn?
+                    </div>
+                    <div class="caption_two">
+                        Giúp Long có số khối bằng với của Lan nào!
+                    </div>
                 </div>
-                <div id="list-block-one" class="aside_left--blocks" onmousedown="return false">
-                </div>
-                <div class="big--floor"></div>
-            </div>
-            <div id="arrows" class="arrows_list">
-            </div>
-            <div class="aside_right d-flex">
-                <div id="list-block-two" class="aside_right--blocks">
-                </div>
-                <div class="aside_right--kid"></div>
-                <div class="small--floor"></div>
-            </div>
-        </div>
-    </div>
-    <div class="context--answer d-flex justify-content-around">
-        <div id="overlay"></div>
-        <div class="answer_one" >
-            <span>Lan</span>
-            <button id="answer1" data-value="SMALLER">OK</button>
-        </div>
-        <div class="answer_two" >
-            <span>Bằng nhau</span>
-            <button id="answer2" data-value="EQUAL">OK</button>
-        </div>
-        <div class="answer_three">
-            <span>Long</span>
-            <button id="answer3" data-value="BIGGER">OK</button>
-        </div>
-    </div>
-</div>`
+                <div class="context">
+                    <div class="context--question  d-flex justify-content-center">
+                        <div class="d-flex justify-content-between" style="height: 276px">
+                            <div class="aside_left d-flex">
+                                <div class="aside_left--kid"></div>
+                                <div id="left-group-block" class="aside_left--drag_block_area">
+                                </div>
+                                <div id="list-block-one" class="aside_left--blocks" onmousedown="return false">
+                                </div>
+                                <div class="big--floor"></div>
+                            </div>
+                            <div id="arrows" class="arrows_list">
+                            </div>
+                            <div class="aside_right d-flex">
+                                <div id="list-block-two" class="aside_right--blocks">
+                                </div>
+                                <div id="right-group-block" class="aside_left--drag_block_area">
+                                </div>
+                                <div class="aside_right--kid"></div>
+                                <div class="big--floor"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="context--answer d-flex justify-content-around">
+                        <div id="overlay"></div>
+                        <div class="answer_one" >
+                            <span>Lan</span>
+                            <button id="answer1" data-value="SMALLER">OK</button>
+                        </div>
+                        <div class="answer_two" >
+                            <span>Bằng nhau</span>
+                            <button id="answer2" data-value="EQUAL">OK</button>
+                        </div>
+                        <div class="answer_three">
+                            <span>Long</span>
+                            <button id="answer3" data-value="BIGGER">OK</button>
+                        </div>
+                    </div>
+                </div>`
     this.lessonFour = `<div class="caption">
                     <div class="caption_one">
                         Ai có nhiều toa tàu hơn?

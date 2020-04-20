@@ -76,7 +76,8 @@ ItemChain = function(type, id = null, option = null){
     }
 
     this.remove = function(domElement){
-        //this.domElement.removeChild(domElement)
+        this.domElement.removeChild(domElement)
+        this.amount--
     }
 
     this.cover = function (position) {
@@ -168,6 +169,7 @@ VerticalItemChain = function (type, id = null, option = null) {
 
     this.remove = function(domElement){
         this.domElement.removeChild(domElement)
+        this.amount--
     }
 
     this.clear = function(itemClass = null){
