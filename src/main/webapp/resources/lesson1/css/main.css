@@ -52,6 +52,9 @@
 .context--answer__blocks .block_3{
     bottom: 138px;
 }
+.block{
+    animation: fadeIn 0.4s;
+}
 .context--answer__blocks .block_4{
     bottom: 184px;
 }
@@ -61,6 +64,7 @@
     text-align: center;
 }
 .context--answer__ok{
+    display: block;
     height: 45px;
     width: 56px;
     padding: 2px 14px;
@@ -72,12 +76,6 @@
     cursor: pointer;
     border: none;
 }
-/* .background_green {
-    background-color: rgb(106, 219, 72);
-}
-.background_red{
-    background-color: #FF5D6A;
-} */
 .answer_1 .context--answer__kid{
     background: url('../../images/kid_1.svg') no-repeat bottom;
 }
@@ -88,6 +86,12 @@
     width: 40px;
     height: 295px;
     position: relative;
+}
+.arrows_list > img{
+    animation: fadeIn 1s;
+}
+.signXList > img{
+    animation: fadeIn 1s;
 }
 .arrows_list .arrows_item_0{
     position: absolute;
@@ -108,4 +112,12 @@
 .arrows_list .arrows_item_4{
     position: absolute;
     bottom: 197px;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

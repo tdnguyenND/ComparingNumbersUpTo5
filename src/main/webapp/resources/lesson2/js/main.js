@@ -5,6 +5,7 @@ const controller = new Controller()
 let backButton = document.getElementById('back-btn')
 let startButton = document.getElementById('start-lesson')
 let submitAnswerButton = document.getElementById('submitAnswer')
+let reworkButton = document.getElementById('reworkBtn')
 
 const fixedChain = document.getElementById("list-block-one")
 const unfixedChain = document.getElementById('list-block-two')
@@ -19,6 +20,7 @@ let container = document.getElementById('under-start-wall')
 let containerSize = container.getBoundingClientRect()
 
 launch = function(){
+    view.beforeBuildColumn()
     newQuestion()
     listenEvent()
     newBlock()
@@ -91,7 +93,7 @@ startMoving = function(){
 
     function dropBlock(){
         let currentLocation = self.getBoundingClientRect()
-        if (isInside(currentLocation, unfixedChain) && self.parentNode !== unfixedChain ){
+        if (isInside(currentLocation, unfixedChain) && self.parentNode !== unfixedChain && view.getNumberBlockOfUnfixedBlockChain() < 6){
             self.parentNode.removeChild(self)
             self.removeAttribute('style')
             unfixedChain.appendChild(self)
@@ -100,6 +102,7 @@ startMoving = function(){
         }else if (isInside(currentLocation, trash) && self.parentNode === unfixedChain){
             unfixedChain.removeChild(self)
             view.reArrangeItems(unfixedChain, 'block')
+            view.blockInsideTrash()
             self.removeEventListener('mousedown', startMoving)
         } else{
             backToLastLocation()
@@ -117,8 +120,7 @@ startMoving = function(){
         let x = position.x
         let y = position.y
         let elementLocation = element.getBoundingClientRect()
-        return (x > elementLocation.left && x < elementLocation.right &&
-            y > elementLocation.top && y < elementLocation.bottom)
+        return (x > elementLocation.left && x < elementLocation.right && y > elementLocation.top && y < elementLocation.bottom)
     }
 }
 
@@ -131,19 +133,20 @@ start = function(){
 }
 
 submitAnswer = function(){
-    disableBehavior()
+    disableSubmitAnswerButton()
     if (!isFirstAnswer) view.clearSuggestion()
     controller.submitAnswer(unfixedChain.getElementsByClassName('block').length)
         .then(response => handleResult(this, response.data))
-        .then(enableBehavior)
 }
 
-disableBehavior = function(){
-    document.getElementById('under-start-wall').style.pointerEvents = 'none'
+disableSubmitAnswerButton = function(){
+    document.getElementById('contextQuestion').style.pointerEvents = 'none'
+    document.getElementById('factory').style.pointerEvents = 'none'
 }
 
-enableBehavior = function(){
-    document.getElementById('under-start-wall').style.pointerEvents = ''
+enableSubmitAnswerButton = function(){
+    document.getElementById('contextQuestion').style.pointerEvents = ''
+    document.getElementById('factory').style.pointerEvents = ''
 }
 
 handleResult = function(chosenAnswer, result){
@@ -166,9 +169,11 @@ handleResult = function(chosenAnswer, result){
 clear = function(){
     unfixedChain.innerHTML = ''
     fixedChain.innerHTML = ''
+    document.querySelector('.context--trash__block > .block').style.visibility = 'hidden'
 }
 
 correctAnswerHandle = function () {
+    enableSubmitAnswerButton()
     return new Promise((resolve, reject) => {
         if (isFirstAnswer){
             model.currentCorrectAnswer++
@@ -185,6 +190,7 @@ incorrectAnswerHandle = function() {
             view.moveBallLeft(model.currentCorrectAnswer)
         }
         view.displaySuggestion()
+            .then(view.reworkBtnAppear)
             .then(resolve)
     })
 }
