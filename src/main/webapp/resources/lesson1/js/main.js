@@ -13,6 +13,8 @@ const incorrectAnswerColor = "#FF5D6A"
 const defaultAnswerColor = "#6ec3e2"
 
 let isFirstAnswer = true
+let advanceMode = false
+let countTrueAnswer = 0
 
 launch = function(){
     listenEvent()
@@ -23,7 +25,7 @@ newQuestion = function(){
     controller.getQuestion()
         .then(response => {
             model.saveCurrentQuestion(response.data)
-            view.renderQuestion(model.currentQuestion)
+            view.renderQuestion(model.currentQuestion, advanceMode)
         })
 }
 
@@ -79,6 +81,8 @@ handleResult = function(chosenAnswer, result){
 }
 
 correctAnswerHandle = function () {
+    countTrueAnswer++
+    if (countTrueAnswer >= 3) advanceMode = true
     return new Promise((resolve, reject) => {
         if (isFirstAnswer){
             model.currentCorrectAnswer++

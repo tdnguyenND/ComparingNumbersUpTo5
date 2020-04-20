@@ -6,7 +6,7 @@ View = function(){
         }
     })
 
-    let blockSrc = "../resources/images/block.png"
+    let blockSrc = ["../resources/images/block.png", '../resources/images/45.png', '../resources/images/59.png']
 
     let greenArrowSrc = "../resources/images/31.png"
     let redArrowSrc = "../resources/images/33.png"
@@ -16,20 +16,24 @@ View = function(){
     let smallerChainAddition = document.createElement('div')
     smallerChainAddition.className = 'signXList'
 
-    this.renderQuestion = function(question) {
+    this.renderQuestion = function(question, advanceMode) {
         document.getElementById("arrows").innerHTML = ''
         let i = 0
         for (let key in question){
             allBlockInfo[i].number = question[key]
             i++
         }
-        allBlockInfo.forEach(this.drawBlocks)
+        allBlockInfo.forEach(info => {this.drawBlocks(info, advanceMode)})
     }
 
-    this.drawBlocks = function(blockInformation) {
+    this.drawBlocks = function(blockInformation, advanceMode) {
         let html = ""
         for (let i = 0; i < blockInformation.number; i++) {
-            html += `<img name="block" class="block block_${i}" src="${blockSrc}" alt="">`
+            let src = blockSrc[0]
+            if (advanceMode){
+                src = blockSrc[Math.random() * 3|0]
+            }
+            html += `<img name="block" class="block block_${i}" src="${src}" alt="">`
         }
         blockInformation.location.innerHTML = html
     }

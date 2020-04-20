@@ -105,6 +105,16 @@ VerticalItemChain = function (type, id = null, option = null) {
         }
     }
 
+    this.addItemWithSpecificClass = function (classList, random = false) {
+        let item = this.instance.cloneNode()
+        for (c of classList) {
+            item.classList.add(c)
+        }
+        if (random){
+            this.addItemUnordered(item)
+        }else this.domElement.appendChild(item)
+    }
+
     this.reverseArrangeTrain = function () {
         let collection = Array.from(this.domElement.getElementsByClassName('train_car'))
         collection.forEach(train => {train.parentNode.removeChild(train)})

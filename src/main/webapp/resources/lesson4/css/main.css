@@ -63,6 +63,21 @@
     background-size: contain;
     background-position: center center;
 }
+.train_car_1{
+    background: url('../../images/train_car_2.png') no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+.train_car_2{
+    background: url('../../images/train_car_3.png') no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+.train_car_3{
+    background: url('../../images/train_car_4.png') no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
 .arrows div{
     width: 60px;
     height: 40px;

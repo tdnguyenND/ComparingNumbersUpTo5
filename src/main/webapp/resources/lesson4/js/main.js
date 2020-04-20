@@ -23,6 +23,9 @@ let unfixedChain = new VerticalItemChain('rails', 'first-train')
 let arrow = new VerticalItemChain('arrow', 'arrows')
 let xSignChain = new VerticalItemChain('x-sign')
 
+let advanceMode = false
+let countTrueAnswer = 0
+
 let isFirstAnswer = true
 
 function launch() {
@@ -82,6 +85,8 @@ handleResult = function (chosenAnswer, result) {
     })
 }
 correctAnswerHandle = function () {
+    countTrueAnswer++
+    if (countTrueAnswer >= 2) advanceMode = true
     return new Promise((resolve, reject) => {
         if (isFirstAnswer){
             model.currentCorrectAnswer++
@@ -164,18 +169,23 @@ function newQuestion(){
 }
 
 function renderQuestion(question){
+    if (!advanceMode){
+        allAnswerBtn.forEach(btn=>{
+            btn.parentNode.style.display = 'none'
+        })
+    }
     renderUnfixedChain(question['first'])
     renderFixedChain(question['second'])
 }
 
 function renderFixedChain(number) {
-    for (let i = 0; i < number; i++)
-        fixedChain.addItem()
+    for (let i = 0; i < number; i++) fixedChain.addItem()
     Array.from(fixedChain.domElement.getElementsByClassName('rails')).forEach(rail=>{
         let train = document.createElement('div')
         train.classList.add('item')
         train.classList.add('train_car')
-
+        if (advanceMode)
+            train.classList.add('train_car_' + (Math.random() * 4 | 0))
         rail.appendChild(train)
     })
 }
@@ -183,7 +193,8 @@ function renderFixedChain(number) {
 function renderUnfixedChain(number) {
     for (let i = 0; i < 6; i++) unfixedChain.addItem()
     for (let i = 0; i < number; i++)
-        groupTrain.addItemUnordered()
+        if (!advanceMode) groupTrain.addItemUnordered()
+        else groupTrain.addItemWithSpecificClass(['train_car_' + (Math.random() * 4 | 0)], true)
 }
 
 function listenMoveBlockEvent(){
@@ -244,7 +255,13 @@ function startMoving() {
             }else{
                 groupTrain.remove(self)
                 self.style = ''
+                self.removeEventListener('mousedown', startMoving)
                 target.appendChild(self)
+                if (groupTrain.domElement.getElementsByClassName('train_car').length === 0){
+                    allAnswerBtn.forEach(btn=>{
+                        btn.parentNode.style.display = 'block'
+                    })
+                }
             }
         }else returnToLastPosition()
     }

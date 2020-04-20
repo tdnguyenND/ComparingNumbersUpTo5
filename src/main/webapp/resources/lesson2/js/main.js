@@ -135,7 +135,9 @@ start = function(){
 submitAnswer = function(){
     disableSubmitAnswerButton()
     if (!isFirstAnswer) view.clearSuggestion()
-    controller.submitAnswer(unfixedChain.getElementsByClassName('block').length)
+    let answer = unfixedChain.getElementsByClassName('block').length
+    if (answer === 0) return false;
+    controller.submitAnswer(answer)
         .then(response => handleResult(this, response.data))
 }
 
