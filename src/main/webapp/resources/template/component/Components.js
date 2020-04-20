@@ -75,14 +75,14 @@ Components = function () {
 </div>
 <div class="context">
     <div class="context--question  d-flex">
-        <div class="d-flex justify-content-between" style="height: 300px;">
+        <div class="d-flex justify-content-between" style="height: 276px">
             <div class="aside_left d-flex">
                 <div class="aside_left--kid"></div>
-                <div class="aside_left--drag_block_area">
+                <div id="group-block" class="aside_left--drag_block_area">
                 </div>
                 <div id="list-block-one" class="aside_left--blocks" onmousedown="return false">
                 </div>
-                <div class="aside_left--floor"></div>
+                <div class="big--floor"></div>
             </div>
             <div id="arrows" class="arrows_list">
             </div>
@@ -90,22 +90,23 @@ Components = function () {
                 <div id="list-block-two" class="aside_right--blocks">
                 </div>
                 <div class="aside_right--kid"></div>
-                <div class="aside_right--floor"></div>
+                <div class="small--floor"></div>
             </div>
         </div>
     </div>
     <div class="context--answer d-flex justify-content-around">
-        <div class="answer_one">
+        <div id="overlay"></div>
+        <div class="answer_one" >
             <span>Lan</span>
-            <button>OK</button>
+            <button id="answer1" data-value="SMALLER">OK</button>
         </div>
-        <div class="answer_two">
+        <div class="answer_two" >
             <span>Bằng nhau</span>
-            <button>OK</button>
+            <button id="answer2" data-value="EQUAL">OK</button>
         </div>
         <div class="answer_three">
             <span>Long</span>
-            <button>OK</button>
+            <button id="answer3" data-value="BIGGER">OK</button>
         </div>
     </div>
 </div>`

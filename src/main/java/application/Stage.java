@@ -36,7 +36,6 @@ public enum Stage {
         this.completed = false;
     }
 
-
     void open(){
         isOpened = true;
     }

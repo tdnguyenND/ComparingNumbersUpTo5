@@ -29,21 +29,7 @@ public class CompareTrainCartQuestion extends BiggerOrSmallerOrEqualQuestion {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString(){
         return "{\n\t\"first\": " + fixedNumber + ",\n\t\"second\": " + unfixedNumber + "\n}";
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if( this == obj) return true;
-        if( obj == null ) return false;
-        if( obj instanceof CompareTrainCartQuestion ){
-            CompareTrainCartQuestion other = (CompareTrainCartQuestion) obj;
-            if( other.fixedNumber == this.fixedNumber && other.unfixedNumber == this.unfixedNumber)
-                return true;
-            return false;
-        }
-        return false;
     }
 }

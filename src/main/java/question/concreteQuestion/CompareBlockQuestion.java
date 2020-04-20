@@ -15,15 +15,15 @@ public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
 
 
     public CompareBlockQuestion(){
-        number1 = (int) ( Math.random() * rNumber +1);
+        number1 = (int) (Math.random() * rNumber + 1);
         do {
-            number2 = (int) (Math.random() * rNumber) + 1;
+            number2 =  (int) (Math.random() * rNumber + 1);
         } while (number2 == number1);
     }
 
     @Override
     public Answer getAnswer() {
-        if(number1 > number2) answer =  BiggerOrSmallerAnswer.BIGGER;
+        if(number1 > number2) answer = BiggerOrSmallerAnswer.BIGGER;
         else answer= BiggerOrSmallerAnswer.SMALLER;
         return answer;
     }

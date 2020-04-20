@@ -115,14 +115,14 @@ View = function(){
     }
 
     this.beforeBuildColumn = function () {
-        if(unfixedChain.style.backgroundImage == 'none'){
+        if(unfixedChain.style.backgroundImage === 'none'){
             self.setBackground(unfixedChain, `url('../resources/images/28.png')`)
             //unfixedChain.style.backgroundImage = `url('../resources/images/28.png')`;
         }
         submitAnswerButton.setAttribute('disabled', true)
     }
     function checkStatusOfUnfixedChain() {
-        if(allBlockInfo[1].number != 0){
+        if(allBlockInfo[1].number !== 0){
             submitAnswerButton.removeAttribute('disabled')
         } else{
             submitAnswerButton.setAttribute('disabled', true)
@@ -145,7 +145,7 @@ View = function(){
     this.blockInsideTrash = function () {
         document.querySelector('.context--trash__block > .block').style.visibility = 'visible'
     }
-    this.getNumberBlockOfUnfixedBlockChain = function(){
+    this.getNumberBlockOfUnfixedBlockChain = function() {
         return allBlockInfo[1].number
     }
 }
