@@ -109,7 +109,47 @@ Components = function () {
         </div>
     </div>
 </div>`
-    this.lessonFour = ``
+    this.lessonFour = `<div class="caption">
+                    <div class="caption_one">
+                        Ai có nhiều toa tàu hơn?
+                    </div>
+                    <div class="caption_two">
+                        Giúp Lan tạo thành một đoàn tàu nhé!
+                    </div>
+                </div>
+                <div class="context">
+                    <div class="context--question">
+                        <div id="group-train" class="drag_element_area"></div>
+                        <div class="train_above">
+                            <div class="kid"></div>
+                            <div id="first-train" class="train d-flex flex-row-reverse">
+                            </div>
+                        </div>
+                        <div class="train_below">
+                            <div class="kid"></div>
+                            <div style="display: inline-block;">
+                                <div id="arrows" class="arrows d-flex">
+                                </div>
+                                <div id="second-train" class="d-flex">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="context--answer d-flex justify-content-around">
+                        <div>
+                            <span>Long</span>
+                            <button id="answer1" data-value="SMALLER">OK</button>
+                        </div>
+                        <div>
+                            <span>Bằng nhau</span>
+                            <button id="answer2" data-value="EQUAL">OK</button>
+                        </div>
+                        <div>
+                            <span>Lan</span>
+                            <button id="answer3" data-value="BIGGER">OK</button>
+                        </div>
+                    </div>
+                </div>`
 
     this.lessonTemplate = `<div class="uchiru_container">
             <div class="uchiru_bg_cell"></div>

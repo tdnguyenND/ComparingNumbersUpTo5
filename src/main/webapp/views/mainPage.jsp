@@ -108,11 +108,13 @@
                             </a>
                         </div>
                         <div class="lesson-card-item last">
-                            <div class="lesson-card-item--status"></div>
-                            <div class="lesson-card-item--preview"></div>
-                            <div class="lesson-card-item--title">
-                                Ai có nhiều toa tàu hơn?
-                            </div>
+                            <a href="/lesson/4">
+                                <div class="lesson-card-item--status"></div>
+                                <div class="lesson-card-item--preview"></div>
+                                <div class="lesson-card-item--title">
+                                    Ai có nhiều toa tàu hơn?
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>

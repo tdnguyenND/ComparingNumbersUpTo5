@@ -53,13 +53,15 @@
     background-size: contain;
     background-position: center bottom;
 }
+.draggable{
+    position: absolute;
+}
 .train_car{
     width: 60px;
     height: 60px;
     background: url('../../images/train_car_1.png') no-repeat;
     background-size: contain;
     background-position: center center;
-    transition: 1.25s;
 }
 .arrows div{
     width: 60px;
