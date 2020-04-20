@@ -1,0 +1,44 @@
+.card_completed--title{
+    font-size: 32px;
+    margin: 40px auto;
+    text-align: center;
+    font-weight: bolder;
+}
+.star-container{
+    text-align: center;
+    direction: rtl;
+}
+.star-container .stars{
+    display: inline-block;
+    margin: 0 5px 80px;
+    height: 80px;
+    width: 80px;
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    background-image: url(../../images/star_dis.svg);
+}
+.submit-btn{
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    font-size: 22px;
+    border: 2px solid #87cee8;
+    border-radius: 5px;
+    color: #68c6e9;
+    background-color: #fff;
+    line-height: 1.5;
+    padding: 0 9px;
+}
+.submit-btn:disabled{
+    cursor: no-drop;
+    border: 2px solid #a6e0e8;
+    color: #a6e0e8;
+}
+.star-container .stars:hover,
+.star-container .stars:hover ~ .stars,
+.star-container .stars:focus,
+.star-container .stars:focus ~ .stars{
+    transition: 0.5s;
+    background-image: url(../../images/star_act.svg);
+    cursor: pointer;
+}
