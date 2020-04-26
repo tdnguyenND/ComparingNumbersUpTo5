@@ -84,10 +84,10 @@
     background-size: cover;
     background-position: center center;
 }
-.arrow-red{
+.red-arrow{
     background: url('../../images/arrow_red_2.png');
 }
-.arrow-green{
+.green-arrow{
     background: url('../../images/arrow_green_2.png');
 }
 .x-sign{

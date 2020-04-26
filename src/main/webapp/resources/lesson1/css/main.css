@@ -41,23 +41,38 @@
     height: 53px;
     position: absolute;
 }
-.context--answer__blocks .block_0{
-    bottom: 0px;
-}
-.context--answer__blocks .block_1{
-    bottom: 46px;
-}
-.context--answer__blocks .block_2{
-    bottom: 92px;
-}
-.context--answer__blocks .block_3{
-    bottom: 138px;
+.item{
+    height: 53px;
+    border: 0;
+    position: absolute;
+    background-size: cover;
+    background: no-repeat center;
 }
 .block{
-    animation: fadeIn 0.4s;
+    background-image: url('../../images/block.png');
+    width: 60px;
+    height: 60px;
 }
-.context--answer__blocks .block_4{
-    bottom: 184px;
+.block .type_1{
+    background-image: url("../../images/45.png");
+}
+.block .type_2{
+    background-image: url("../../images/59.png");
+}
+.arrow{
+    width: 40px;
+    animation: fadeIn 1s;
+}
+.green-arrow{
+    background-image: url('../../images/31.png');
+}
+.red-arrow{
+    background-image: url("../../images/33.png");
+}
+.x-sign{
+    background-image: url("../../images/XSign.png");
+    width: 40px;
+    animation: fadeIn 1s;
 }
 .context--answer__name{
     margin-top: 23px;
@@ -86,7 +101,6 @@
 .context .arrows_list{
     width: 40px;
     height: 295px;
-    position: relative;
 }
 .arrows_list > img{
     animation: fadeIn 1s;
@@ -97,22 +111,6 @@
 .arrows_list .arrows_item_0{
     position: absolute;
     bottom: 13px;
-}
-.arrows_list .arrows_item_1{
-    position: absolute;
-    bottom: 59px;
-}
-.arrows_list .arrows_item_2{
-    position: absolute;
-    bottom: 105px;
-}
-.arrows_list .arrows_item_3{
-    position: absolute;
-    bottom: 151px;
-}
-.arrows_list .arrows_item_4{
-    position: absolute;
-    bottom: 197px;
 }
 @keyframes fadeIn {
     from {

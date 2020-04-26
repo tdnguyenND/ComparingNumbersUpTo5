@@ -6,24 +6,24 @@ Components = function () {
                 <div class="context--answer answer_1">
                     <div class="row_1 d-flex justify-content-between">
                         <div class="context--answer__kid"></div>
-                        <div id="list-block-one" class="context--answer__blocks">
+                        <div id="first-chain" class="context--answer__blocks">
                         </div>
                     </div>
                     <div class="context--answer__floor"></div>
                     <div class="context--answer__name">Lan</div>
-                    <button id="answerA" class="context--answer__ok" data-value="BIGGER">Ok</button>
+                    <button id="answer1" class="context--answer__ok" data-value="BIGGER">Ok</button>
                 </div>
                 <div id="arrows" class="arrows_list">
                 </div>
                 <div class="context--answer answer_2">
                     <div class="row_1 d-flex justify-content-between">
-                        <div id="list-block-two" class="context--answer__blocks">
+                        <div id="second-chain" class="context--answer__blocks">
                         </div>
                         <div class="context--answer__kid"></div>
                     </div>
                     <div class="context--answer__floor"></div>
                     <div class="context--answer__name">Long</div>
-                    <button id="answerB" class="context--answer__ok" data-value = "SMALLER">Ok</button>
+                    <button id="answer2" class="context--answer__ok" data-value = "SMALLER">Ok</button>
                 </div>
             </div>`
     this.lessonTwo = `<div class="caption"> 
@@ -77,18 +77,18 @@ Components = function () {
                         <div class="d-flex justify-content-between" style="height: 276px">
                             <div class="aside_left d-flex">
                                 <div class="aside_left--kid"></div>
-                                <div id="left-group-block" class="aside_left--drag_block_area">
+                                <div id="first-draggable-area" class="aside_left--drag_block_area">
                                 </div>
-                                <div id="list-block-one" class="aside_left--blocks" onmousedown="return false">
+                                <div id="first-chain" class="aside_left--blocks" onmousedown="return false">
                                 </div>
                                 <div class="big--floor"></div>
                             </div>
                             <div id="arrows" class="arrows_list">
                             </div>
                             <div class="aside_right d-flex">
-                                <div id="list-block-two" class="aside_right--blocks">
+                                <div id="second-chain" class="aside_right--blocks">
                                 </div>
-                                <div id="right-group-block" class="aside_left--drag_block_area">
+                                <div id="second-draggable-area" class="aside_left--drag_block_area">
                                 </div>
                                 <div class="aside_right--kid"></div>
                                 <div class="big--floor"></div>
@@ -96,10 +96,9 @@ Components = function () {
                         </div>
                     </div>
                     <div class="context--answer d-flex justify-content-around">
-                        <div id="overlay"></div>
                         <div class="answer_one" >
                             <span>Lan</span>
-                            <button id="answer1" data-value="SMALLER">OK</button>
+                            <button id="answer1" data-value="BIGGER">OK</button>
                         </div>
                         <div class="answer_two" >
                             <span>Bằng nhau</span>
@@ -107,7 +106,7 @@ Components = function () {
                         </div>
                         <div class="answer_three">
                             <span>Long</span>
-                            <button id="answer3" data-value="BIGGER">OK</button>
+                            <button id="answer3" data-value="SMALLER">OK</button>
                         </div>
                     </div>
                 </div>`

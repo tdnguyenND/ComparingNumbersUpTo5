@@ -1,122 +1,46 @@
-const model = new Model()
-const view = new View()
-const controller = new Controller()
+let app = new function () {
+    this.firstItemChain = new ItemChain(['block'], 'first-chain')
+    this.secondItemChain = new ItemChain(['block'], 'second-chain')
+    this.arrowChain = new ArrowChain(['arrow'], 'arrows')
+    this.answerRenderer = renderQuestion
+    this.answerButtons = ['answer1', 'answer2'].map(id => document.getElementById(id))
+    this.getAnswer = getAnswer
+    this.changeModePoint = 3
 
-let backButton = document.getElementById('back-btn')
-let startButton = document.getElementById('start-lesson')
-let allSubmitAnswerButton = ['answerA', 'answerB'].map(id => document.getElementById(id))
-
-const submitAnswerDelay = 1500
-
-const correctAnswerColor = "rgb(106, 219, 72)"
-const incorrectAnswerColor = "#FF5D6A"
-const defaultAnswerColor = "#6ec3e2"
-
-let isFirstAnswer = true
-let advanceMode = false
-let countTrueAnswer = 0
-
-let listBall = document.getElementById('list-ball')
-for (let i = 0; i < model.numberQuestionOfLesson; i++) {
-    let ball = document.createElement('div')
-    ball.id = 'ball_' + i
-    ball.setAttribute('class', 'ball')
-    ball.style.left = (4 + i * 24) + 'px'
-    listBall.appendChild(ball)
+    HorizontalChainSuggestedApplication.apply(this)
 }
 
-launch = function(){
-    listenEvent()
-    newQuestion()
+app.launch()
+
+function renderQuestion(question) {
+    renderFirstChain(question['first'])
+    renderSecondChain(question['second'])
 }
 
-newQuestion = function(){
-    controller.getQuestion()
-        .then(response => {
-            model.saveCurrentQuestion(response.data)
-            view.renderQuestion(model.currentQuestion, advanceMode)
-        })
-}
-
-listenEvent = function(){
-    backButton.addEventListener('click', back)
-    startButton.addEventListener('click', start)
-    allSubmitAnswerButton.forEach(btn => btn.addEventListener('click', submitAnswer))
-}
-
-back = function(){
-    window.location = '/'
-}
-
-start = function(){
-    view.setUpAnswerScene()
-}
-
-submitAnswer = function(){
-    disableSubmitAnswerButton()
-    if (!isFirstAnswer) view.clearSuggestion()
-    controller.submitAnswer(this.dataset.value)
-        .then(response => handleResult(this, response.data))
-        .then(enableSubmitAnswerButton)
-
-}
-
-disableSubmitAnswerButton = function(){
-    allSubmitAnswerButton.forEach(btn => btn.disabled = true)
-}
-
-enableSubmitAnswerButton = function(){
-    allSubmitAnswerButton.forEach(btn => btn.disabled = false)
-}
-
-handleResult = function(chosenAnswer, result){
-    return new Promise((resolve, reject) => {
-        if (result){
-            view.setBackground(chosenAnswer, correctAnswerColor)
-            correctAnswerHandle()
-                .then(checkFinishStage)
-                .then(newQuestion)
-                .then(() => isFirstAnswer = true)
-                .then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
-                .then(resolve)
-        }else{
-            view.setBackground(chosenAnswer, incorrectAnswerColor)
-            incorrectAnswerHandle()
-                .then(()=> isFirstAnswer = false)
-                .then(() => view.setBackground(chosenAnswer, defaultAnswerColor))
-                .then(resolve)
+function renderFirstChain(number) {
+    for (let i = 0; i < number; i++) {
+        if (!app.advanceMode) {
+            app.firstItemChain.addItemOrdered()
+        }else {
+            let newBlock = block.cloneNode()
+            newBlock.classList.add('type_' + (Math.random() * 3 | 0))
+            app.firstItemChain.addItemOrdered(newBlock)
         }
-    })
+    }
 }
 
-correctAnswerHandle = function () {
-    countTrueAnswer++
-    if (countTrueAnswer >= 3) advanceMode = true
-    return new Promise((resolve, reject) => {
-        if (isFirstAnswer){
-            model.currentCorrectAnswer++
-            view.moveBallRight(model.currentCorrectAnswer, model.numberQuestionOfLesson)
+function renderSecondChain(number) {
+    for (let i = 0; i < number; i++) {
+        if (!app.advanceMode) {
+            app.secondItemChain.addItemOrdered()
+        }else {
+            let newBlock = block.cloneNode()
+            newBlock.classList.add('type_' + (Math.random() * 3 | 0))
+            app.secondItemChain.addItemOrdered(newBlock)
         }
-        setTimeout(resolve, submitAnswerDelay)
-    })
+    }
 }
 
-incorrectAnswerHandle = function() {
-    return new Promise((resolve, reject) => {
-        if (isFirstAnswer && model.currentCorrectAnswer > 0){
-            model.currentCorrectAnswer--
-            view.moveBallLeft(model.currentCorrectAnswer, model.numberQuestionOfLesson)
-        }
-        view.displaySuggestion(model.currentQuestion)
-            .then(resolve)
-    })
+function getAnswer(btn) {
+    return btn.dataset.value
 }
-
-checkFinishStage = function(){
-    return new Promise((resolve, reject) => {
-        if (model.isFinish()) window.location = "/completed"
-        resolve()
-    })
-}
-
-launch()

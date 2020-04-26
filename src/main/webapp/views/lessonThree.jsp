@@ -26,9 +26,12 @@
     document.body.insertBefore(e, document.body.firstChild)
     document.getElementById('under-start-wall').innerHTML = c.lessonThree
 </script>
-<script src="/resources/template/mvc/Controller.js"></script>
+<script src="/resources/template/mvc/BasicEventController.js"></script>
+<script src="/resources/template/mvc/MoveItemController.js"></script>
+<script src="/resources/template/mvc/SuggestionController.js"></script>
+<script src="/resources/template/mvc/InteractiveController.js"></script>
 <script src="/resources/template/mvc/Model.js"></script>
-<script src="/resources/lesson3/js/View.js"></script>
+<script src="/resources/template/mvc/View.js"></script>
 <script src="/resources/lesson3/js/main.js"></script>
 </body>
 </html>

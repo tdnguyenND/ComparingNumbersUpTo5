@@ -26,7 +26,7 @@
     document.body.insertBefore(e, document.body.firstChild)
     document.getElementById('under-start-wall').innerHTML = c.lessonTwo
 </script>
-<script src="/resources/template/mvc/Controller.js"></script>
+<script src="/resources/template/mvc/InteractiveController.js"></script>
 <script src="/resources/template/mvc/Model.js"></script>
 <script src="/resources/lesson2/js/View.js"></script>
 <script src="/resources/lesson2/js/main.js"></script>

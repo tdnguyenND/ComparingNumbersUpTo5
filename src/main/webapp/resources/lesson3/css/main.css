@@ -53,13 +53,8 @@
 }
 .context .arrows_list{
     width: 40px;
-    height: 295px;
+    height: 276px;
 }
-/*.arrows_list--item{*/
-/*    width: 100%;*/
-/*    height: 20px;*/
-/*    position: absolute;*/
-/*}*/
 .aside_right--blocks{
     width: 60px;
     height: 100%;
@@ -87,7 +82,7 @@
     border: 0;
     position: absolute;
     background-size: cover;
-    background: no-repeat center;
+    background: no-repeat center center;
 }
 .block{
     background-image: url('../../images/block.png');
