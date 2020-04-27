@@ -43,7 +43,7 @@ HorizontalChainSuggestedApplication = function(){
             this.smaller = this.firstItemChain
         }
     }
-    this.displaySuggestion = function (advanceMode) {
+    this.displaySuggestion = function () {
         self.calculateAmount()
         return new Promise(resolve => {
             let i = 1
@@ -59,6 +59,11 @@ HorizontalChainSuggestedApplication = function(){
                     resolve()
                 }
             }, 1000)
+        })
+    }
+    this.correctEffect = function () {
+        return new Promise(resolve => {
+            resolve()
         })
     }
 }
@@ -80,11 +85,14 @@ VerticalChainSuggestedApplication = function () {
             this.smaller = this.firstItemChain
         }
     }
-    this.displaySuggestion = function (advanceMode) {
+    this.displaySuggestion = function () {
         self.calculateAmount()
         self.firstItemChain.reverseArrangeTrain()
+        if (self.smaller === self.firstItemChain){
+            document.getElementById('arrows').classList.add('flex-row-reverse')
+        }
         return new Promise(resolve => {
-            if (advanceMode && !self.firstDraggableItemArea.empty()){
+            if (this.advanceMode && !self.firstDraggableItemArea.empty()){
                 self.hideAnswer()
                 resolve()
             }else {
@@ -96,7 +104,7 @@ VerticalChainSuggestedApplication = function () {
                         if (self.smaller === self.secondItemChain) {
                             self.smaller.addXSign()
                         } else {
-                            self.smaller.addXSignInIndex(5 - i)
+                            self.smaller.addXSignInIndex(i - 1)
                         }
                     }
                     i++
@@ -106,6 +114,16 @@ VerticalChainSuggestedApplication = function () {
                     }
                 }, 1000)
             }
+        })
+    }
+
+    this.correctEffect = function () {
+        return new Promise((resolve, reject) => {
+            Promise.all([
+                this.firstItemChain.jump(),
+                this.secondItemChain.jump()
+            ])
+                .then(resolve)
         })
     }
 }

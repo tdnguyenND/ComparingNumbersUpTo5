@@ -1,6 +1,8 @@
-<!-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page contentType="text/html; charset=UTF-8" %> -->
+<!--
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+-->
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -51,12 +53,10 @@
                 <div class="rating-item simple-no" data-value="1"></div>
             </div>
             <div class="card-rating-form">
-                <form method="post">
-                    <button class="btn btn-default" disabled="disabled" name="button" type="submit">
-                        Next
-                        <i class="fas fa-angle-right"></i>
-                    </button>
-                </form>
+                <button id="backHomeBtn" class="btn btn-default" disabled="disabled" name="button" type="submit">
+                    Next
+                    <i class="fas fa-angle-right"></i>
+                </button>
             </div>
         </div>
     </div>

@@ -17,11 +17,23 @@ setInterval(()=>{
 }, 100)
 
 function renderQuestion(question){
-    if (!app.advanceMode){
-        app.hideAnswer()
-    }
+    // if (!app.advanceMode){
+    //     app.hideAnswer()
+    // }
+    app.hideAnswer()
     renderUnfixedChain(question['first'])
     renderFixedChain(question['second'])
+    setupBeforeAnswer(question)
+
+    let i = setInterval(()=>{
+        if (app.firstDraggableItemArea.amount === 0) {
+            displayRequestNext()
+            app.showAnswer()
+            clearInterval(i)
+        }
+    }, 100)
+    // if (!app.advanceMode) app.hideAnswer()
+    app.hideAnswer()
 }
 
 function renderFixedChain(number) {
@@ -47,4 +59,23 @@ function renderUnfixedChain(number) {
 
 function getAnswer(button) {
     return button.dataset.value
+}
+
+function displayRequestNext() {
+    document.querySelector('.caption_two').style.visibility = 'hidden'
+    document.querySelector('.caption_one').style.color = 'black'
+}
+
+function setupBeforeAnswer(question) {
+    document.querySelector('.caption_two').style.visibility = 'visible'
+    document.querySelector('.caption_one').style.color = 'rgba(0,0,0,.3)'
+    document.getElementById('arrows').className = 'arrows d-flex'
+    let trainBelow =  document.querySelector('.train_below')
+    let marginLeft = 95
+    if(question['first'] >= question['second']){
+        marginLeft =  marginLeft + 60 * Math.abs(5 - question['first'])
+    } else{
+        marginLeft =  marginLeft + 60 * Math.abs(5 - question['second'])
+    }
+    trainBelow.style.marginLeft = marginLeft + 'px'
 }

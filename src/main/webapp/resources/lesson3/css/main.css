@@ -32,7 +32,6 @@
     height: 100%;
     width: 160px;
     margin-right: 10px;
-    background-color: rgba(181, 242, 253, 0.45);
 }
 .aside_left--blocks{
     width: 60px;
@@ -68,6 +67,9 @@
     height: 100%;
     width: 138px;
     background: url('../../images/kid_2.svg') no-repeat bottom;
+}
+#second-draggable-area{
+    display: none;
 }
 .small--floor{
     width: 240px;

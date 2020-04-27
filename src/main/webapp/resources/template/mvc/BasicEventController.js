@@ -8,6 +8,7 @@ Application = function () {
     const listBall = document.getElementById('list-ball')
 
     this.advanceMode = false
+    this.isFirstAnswer = false
 
     this.setUpPointBar = function () {
         for (let i = 0; i < numberQuestionOfLesson; i++) {
@@ -104,13 +105,15 @@ Application = function () {
         countTrueAnswer++
         if (countTrueAnswer >= self.changeModePoint) self.advanceMode = true
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, submitAnswerDelay)
+            this.correctEffect()
+                .then(()=> setTimeout(resolve, 1500))
+            // setTimeout(resolve, submitAnswerDelay)
         })
     }
 
     this.incorrectHandler = function (){
         return new Promise((resolve, reject) => {
-            app.displaySuggestion(self.advanceMode)
+            this.displaySuggestion()
                 .then(resolve)
         })
     }

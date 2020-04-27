@@ -135,3 +135,7 @@
     border: 2px solid #a6e0e8;
     color: #a6e0e8;
 }
+.btn-default a:hover{
+    text-decoration: none;
+    color: #87cee8;
+}

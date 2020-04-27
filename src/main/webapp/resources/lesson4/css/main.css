@@ -16,7 +16,6 @@
 .drag_element_area{
     width: 400px;
     height: 180px;
-    background-color: rgb(132, 183, 207);
     margin: auto;
 }
 
@@ -33,6 +32,13 @@
     background-image: url('../../images/kid3.svg');
     background-size: cover;
 }
+#first-train{
+    position: relative;
+}
+#first-train  .train_car{
+    position: absolute;
+    transition: 1s;
+}
 /* train below */
 .train_below{
     margin-left: 95px;
@@ -41,7 +47,7 @@
     width: 220px;
     height: 100px;
     background: url('../../images/kid4.svg') no-repeat;
-    background-size: con;
+    background-size: contain;
     background-position: center center;
     display: inline-block;
 }
@@ -83,6 +89,7 @@
     height: 40px;
     background-size: cover;
     background-position: center center;
+    animation: fadeIn 1s;
 }
 .red-arrow{
     background: url('../../images/arrow_red_2.png');
@@ -96,6 +103,7 @@
     background-size: cover;
     background-position: center center;
     background: url('../../images/XSign.png');
+    animation: fadeIn 1s;
 }
 .context--answer{
     margin-top: 40px;
@@ -126,4 +134,12 @@
 }
 .jump {
     animation: jump 1.25s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

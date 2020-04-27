@@ -18,11 +18,20 @@ let app = new function () {
                 this.hideAnswer()
                 resolve()
             })
-        }else superSuggestion()
+        }else return superSuggestion()
     }
 }
 
 app.launch()
+let i = setInterval(()=>{
+    if (app.advanceMode){
+        document.getElementById('second-draggable-area').style.display = 'block'
+        let floor = document.querySelector('.aside_right .floor')
+        floor.classList.remove('small--floor')
+        floor.classList.add('big--floor')
+        clearInterval(i)
+    }
+}, 200)
 
 function renderQuestion(question) {
     renderFirstChain(question['first'])
@@ -70,6 +79,13 @@ function setupBeforeAnswer(advanceMode) {
     document.querySelector('.caption_two').style.visibility = 'visible'
     document.querySelector('.caption_one').style.color = 'rgba(0,0,0,.3)'
     document.getElementById('first-chain').style.backgroundImage = `url('../resources/images/28.png')`
-    if (advanceMode)
+    let areaBlock = document.getElementById('second-draggable-area')
+    let floor = document.querySelector('.aside_right .floor')
+    if (advanceMode){
         document.getElementById('second-chain').style.backgroundImage = `url('../resources/images/28.png')`
+        floor.className = 'floor big--floor'
+        areaBlock.style.display = 'block'
+    } else {
+
+    }
 }

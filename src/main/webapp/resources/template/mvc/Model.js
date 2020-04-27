@@ -190,13 +190,54 @@ VerticalItemChain = function (classList, id = null) {
     ItemChain.apply(this, [classList, id])
 
     this.reverseArrangeTrain = function () {
-        let collection = Array.from(this.root.getElementsByClassName('train_car')).reverse()
-        collection.forEach(train => {train.parentNode.removeChild(train)})
-        for (let i = 0; i < collection.length; i++){
-            this.insertElementToItem(4 - i, collection[i])
-        }
+        let collection = Array.from(this.root.getElementsByClassName('train_car'))
+        let collection1 = Array.from(this.root.getElementsByClassName('rails'))
+        let j = 0
+        collection1.forEach(rails =>{
+            let train = rails.querySelector('.train_car')
+            if(train != null){
+                train.style.right = j * 60 + 'px'
+            }
+            j ++
+        })
+
+        return new Promise(function(resolve, reject) {
+            setTimeout(resolve, 100);
+        }).then(function() {
+            let i = 0
+            collection.forEach(train => {
+                train.style.right = i * 60 +  'px'
+                i ++
+            })
+        });
     }
-}
+
+    this.jump = function () {
+        let trains = Array.from(this.root.getElementsByClassName('train_car'))
+        let max = trains.length
+        return new Promise((resolve, reject) => {
+            let i = 0
+            itemJump(trains, i)
+                .then(resolve)
+        })
+    }
+
+
+    function itemJump(array, seq) {
+        return new Promise(resolve => {
+            if (seq === array.length) resolve()
+            else {
+                array[seq].style.animation = 'jump 1.25s'
+                let delay = 400
+                if ( seq === array.length - 1) delay = 1250
+                setTimeout(()=>{
+                    itemJump(array, seq + 1)
+                        .then(resolve)
+                }, delay)
+            }
+        })
+    }
+}//tu tư và 2 cái đoàn tàu nhảy cùng lúc nhưng các toa tàu của mỗi đoàn tàu nhảy cách nhau 400ms
 
 ArrowChain = function (classList, id = null) {
     ItemChain.apply(this, [classList, id])

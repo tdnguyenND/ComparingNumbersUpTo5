@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dragon Learn</title>
+    <link rel="shortcut icon" href="<c:url value = "/resources/images/dragon_favicon.png"/>" type="image/x-icon">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="<c:url value = "/resources/main_page/css/main.css"/>" rel="stylesheet">
     <link href="<c:url value = "/resources/completedLesson/css/completedLesson.css"/>" rel="stylesheet">
@@ -47,7 +48,11 @@
     <section class="card_completed">
         <div class="card_completed--title">Giỏi quá! Bạn đã hoàn thành bài học!</div>
         <div class="card_completed--congrats"></div>
-            <div class="card_completed--button">Tiếp tục</div>
+            <div class="card_completed--button">
+                <a href="/likePage">
+                    Tiếp tục
+                </a>
+            </div>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -59,11 +64,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    <script>
-        document.querySelector('.card_completed--congrats').onclick = () =>{
-            window.location = '/likePage'
-        }
-    </script>
+
 </body>
 
 </html>

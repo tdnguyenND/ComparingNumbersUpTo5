@@ -79,7 +79,7 @@ Components = function () {
                                 </div>
                                 <div id="first-chain" class="aside_left--blocks" onmousedown="return false">
                                 </div>
-                                <div class="big--floor"></div>
+                                <div class="floor big--floor"></div>
                             </div>
                             <div id="arrows" class="arrows_list">
                             </div>
@@ -89,7 +89,7 @@ Components = function () {
                                 <div id="second-draggable-area" class="aside_left--drag_block_area">
                                 </div>
                                 <div class="aside_right--kid"></div>
-                                <div class="big--floor"></div>
+                                <div class="floor small--floor"></div>
                             </div>
                         </div>
                     </div>

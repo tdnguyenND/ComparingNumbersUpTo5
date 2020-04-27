@@ -1,6 +1,6 @@
 let like = document.querySelector('.simple-yes')
 let dislike = document.querySelector('.simple-no')
-let btnNext = document.querySelector('.btn-default')
+let btnNext = document.getElementById('backHomeBtn')
 like.onclick = () =>{
     btnNext.removeAttribute('disabled')
     if(!like.classList.contains('active')){
@@ -15,7 +15,8 @@ dislike.onclick = () =>{
         dislike.classList.add('active')
     }
 }
-btnNext.addEventListener('click', next)
-function next() {
-    window.location = '/'
-}
+btnNext.addEventListener('click', () => {
+    console.log('dcm deo chayu a')
+    window.location.replace("http://localhost:8080")
+})
+
