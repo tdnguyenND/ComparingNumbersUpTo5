@@ -1,0 +1,137 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+.banner-wrapper{
+    height: 97px;
+    width: 100%;
+    background-color: #5BBBE4;
+    z-index: 100;
+}
+.banner-wrapper--block{
+    width: 1024px;
+    height: 100%;
+    margin: auto;
+    background: url('../../images/banner.svg') no-repeat -340px center;
+    background-size: auto 97px;
+}
+.header{
+    min-width: 1024px;
+    height: 50px;
+    background-color: #eee;
+    border-bottom: 1px solid #D8D8D8;
+}
+.header--container{
+    height: 100%;
+    width: 1024px;
+    margin: auto;
+    padding: 0 18px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+}
+.header--logo{
+    height: 100%;
+    width: 200px;
+}
+.header--logo a{
+    display: inline-block;
+    width: 160px;
+    height: 100%;
+    background: url('../../images/header-logo.svg') center no-repeat;
+}
+.header--nav-item{
+    margin-right: 28px;
+    font-size: 17px;
+    color: #707c81;
+    font-weight: bold;
+    line-height: 50px;
+    transition: color 0.2s ease-out;
+    letter-spacing: 0.6px;
+
+}
+.header--nav-item:hover {
+    color: #FF5D6A;
+    text-decoration: none;
+}
+.header--right{
+    width: 191px;
+}
+.header--right-invite a{
+    display: inline-block;
+    height: 40px;
+    width: 105px;
+    box-sizing: border-box;
+    line-height: 14px;
+    padding: 5px 0 4px 0;
+    font-size: 13px;
+    color: #FF5D6A;
+    text-align: center;
+    border: 1px solid #FF5D6A;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+
+}
+.header--right-invite a:hover {
+    color: rgb(247, 55, 71);
+    text-decoration: none;
+}
+.header--right-profile{
+    font-size: 13px;
+    color: #707c81;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    padding: 0 20px 2px 0;
+    margin: auto;
+    line-height: 14px;
+}
+/*main container*/
+.rating h1{
+    font-size: 30px;
+    margin: 30px 0px;
+    text-align: center;
+}
+.card-rating, .card-rating-form{
+    text-align: center;
+}
+.card-rating .rating-item{
+    display: inline-block;
+    height: 230px;
+    width: 240px;
+    cursor: pointer;
+    background-size: 259px 220px;
+    background-repeat: no-repeat;
+}
+.simple-yes {
+    background-image: url('../../images/yes_dis.svg');
+}
+.simple-no{
+    background-image: url('../../images/no_dis.svg');
+}
+.simple-yes:hover {
+    background-image: url('../../images/yes_hov.svg');
+}
+.simple-no:hover {
+    background-image: url('../../images/no_hov.svg');
+}
+.simple-yes.active{
+    background-image: url('../../images/yes_act.svg');
+}
+.simple-no.active{
+    background-image: url('../../images/no_act.svg');
+}
+.card-rating-form button{
+    border: 2px solid #87cee8;
+    color: #87cee8;
+    line-height: 1.5;
+    font-size: 21px;
+    padding: 0 9px;
+    border-radius: 5px;
+}
+.card-rating-form button:disabled {
+    cursor: no-drop;
+    border: 2px solid #a6e0e8;
+    color: #a6e0e8;
+}

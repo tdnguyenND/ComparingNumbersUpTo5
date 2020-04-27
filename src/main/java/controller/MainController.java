@@ -29,4 +29,9 @@ public class MainController {
     public String finishPage(){
         return "completedLesson";
     }
+
+    @RequestMapping(value = "/likePage")
+    public String likePage(){
+        return "likePage";
+    }
 }

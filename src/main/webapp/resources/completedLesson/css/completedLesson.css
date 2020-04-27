@@ -9,7 +9,7 @@
     margin-bottom: 20px;
     background-repeat: no-repeat;
     background-position: top center;
-    background-image: url('../images/complete-dragon.png');
+    background-image: url('../../images/complete-dragon.png');
 }
 .card_completed--button{
     width: 200px;
