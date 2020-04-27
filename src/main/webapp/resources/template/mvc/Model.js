@@ -41,6 +41,7 @@ ItemChain = function(classList, id = null){
     this.amount = 0
 
     this.appendItem = function(item = null){
+        if (self.amount === maxAmount) return;
         self.root.appendChild(item || self.instance())
         self.amount++
     }
@@ -119,6 +120,12 @@ ItemChain = function(classList, id = null){
         this.amount--
     }
 
+    this.reArrangeItems = function () {
+        let collection = Array.from(this.root.getElementsByClassName('item'))
+        self.clear()
+        collection.forEach(ele => self.addItemOrdered(ele))
+    }
+
     this.coverPosition = function (position) {
         let x = position.x
         let y = position.y
@@ -165,8 +172,17 @@ ItemChain = function(classList, id = null){
 
     this.clearItem = function (type) {
         Array.from(self.root.getElementsByClassName(type)).forEach(item=>{
+            if (item.parentNode === self.root) self.amount--
             item.parentNode.removeChild(item)
         })
+    }
+}
+
+Trash = function(classList, id = null){
+    ItemChain.apply(this, [classList, id])
+
+    this.appendItem = function (item) {
+        return false
     }
 }
 

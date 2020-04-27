@@ -33,7 +33,7 @@ Components = function () {
                 <div class="context--answer answer_1"> 
                     <div class="row_1 d-flex justify-content-between"> 
                         <div class="context--answer__kid"></div> 
-                        <div id="list-block-one" class="context--answer__blocks" onmousedown="return false">
+                        <div id="first-chain" class="context--answer__blocks" onmousedown="return false">
                         </div> 
                     </div> 
                     <div class="context--answer__floor"></div> 
@@ -42,9 +42,7 @@ Components = function () {
                 </div> 
                 <div class="context--answer answer_2"> 
                     <div class="row_1 d-flex justify-content-between"> 
-                        <div id="list-block-two" class="context--answer__blocks"> 
-         
-                        </div> 
+                        <div id="second-chain" class="context--answer__blocks"></div> 
                         <div class="context--answer__kid"></div> 
                     </div> 
                     <div class="context--answer__floor"></div> 
