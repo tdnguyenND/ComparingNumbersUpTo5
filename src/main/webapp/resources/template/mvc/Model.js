@@ -237,8 +237,7 @@ VerticalItemChain = function (classList, id = null) {
             }
         })
     }
-}//tu tư và 2 cái đoàn tàu nhảy cùng lúc nhưng các toa tàu của mỗi đoàn tàu nhảy cách nhau 400ms
-
+}
 ArrowChain = function (classList, id = null) {
     ItemChain.apply(this, [classList, id])
     this.addRedArrowOrdered = function () {
