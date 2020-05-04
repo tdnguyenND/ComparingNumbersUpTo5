@@ -2,18 +2,20 @@ package question.concreteQuestion;
 
 import answer.Answer;
 import answer.GiveNumberAnswer;
-import entity.Block;
 import question.abstractQuestion.GiveNumberQuestion;
 
-
 public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
-    private Block[] fixedBlock;
-    private final int rNumber = 4;
+    private int fixedNumber;
+    private final int max = 5;
+    private final int min = 1;
 
     public GiveTheSameNumberQuestion(){
-        int value = (int)  (Math.random() * rNumber + 1);
-        answer = new GiveNumberAnswer(value);
-        fixedBlock = new Block[value];
+        fixedNumber = (int)  (Math.random() * (max - min) + min);
+        answer = new GiveNumberAnswer(fixedNumber);
+    }
+
+    public int getFixedNumber() {
+        return fixedNumber;
     }
 
     @Override
@@ -23,6 +25,6 @@ public class GiveTheSameNumberQuestion extends GiveNumberQuestion {
 
     @Override
     public String toString() {
-        return "{\"fixedNumber\": \"" + fixedBlock.length + "\"}";
+        return "{\"fixedNumber\": " + fixedNumber + "}";
     }
 }

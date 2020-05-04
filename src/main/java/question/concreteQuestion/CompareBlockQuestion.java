@@ -2,34 +2,38 @@ package question.concreteQuestion;
 
 import answer.Answer;
 import answer.BiggerOrSmallerAnswer;
-import entity.Block;
 import question.abstractQuestion.BiggerOrSmallerQuestion;
 
-import java.util.Random;
-
 public class CompareBlockQuestion extends BiggerOrSmallerQuestion {
-    private Block[][] fixedBlocks;
-    private int number1;
-    private int number2;
-    private final int rNumber = 4;
-
+    private int firstNumber;
+    private int secondNumber;
+    private final int max = 5;
+    private final int min = 1;
 
     public CompareBlockQuestion(){
-        number1 = (int) (Math.random() * rNumber + 1);
+        firstNumber = (int) (Math.random() * (max - min) + min);
         do {
-            number2 =  (int) (Math.random() * rNumber + 1);
-        } while (number2 == number1);
+            secondNumber =  (int) (Math.random() * (max - min) + min);
+        } while (secondNumber == firstNumber);
     }
 
     @Override
     public Answer getAnswer() {
-        if(number1 > number2) answer = BiggerOrSmallerAnswer.BIGGER;
+        if(firstNumber > secondNumber) answer = BiggerOrSmallerAnswer.BIGGER;
         else answer= BiggerOrSmallerAnswer.SMALLER;
         return answer;
     }
 
+    public int getFirstNumber() {
+        return firstNumber;
+    }
+
+    public int getSecondNumber() {
+        return secondNumber;
+    }
+
     @Override
     public String toString() {
-        return "{\n\t\"first\": " + number1 + ",\n\t\"second\": " + number2 + "\n}";
+        return "{\n\t\"first\": " + firstNumber + ",\n\t\"second\": " + secondNumber + "\n}";
     }
 }
