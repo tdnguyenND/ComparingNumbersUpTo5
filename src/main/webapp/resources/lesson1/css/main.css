@@ -91,6 +91,7 @@
     color: white;
     cursor: pointer;
     border: none;
+    outline: none!important;
 }
 .answer_1 .context--answer__kid{
     background: url('../../images/kid_1.svg') no-repeat bottom;

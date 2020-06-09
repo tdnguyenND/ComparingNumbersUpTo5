@@ -125,6 +125,7 @@
     cursor: pointer;
     border: none;
     margin: auto;
+    outline: none!important;
 }
 #overlay {
     position: absolute;

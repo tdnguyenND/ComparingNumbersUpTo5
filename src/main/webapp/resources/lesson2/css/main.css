@@ -155,6 +155,7 @@
     position: absolute;
     bottom: 34px;
     left: 620px;
+    outline: none!important;
 }
 .context--drag--done:disabled{
     background-color: #9cdce7;
